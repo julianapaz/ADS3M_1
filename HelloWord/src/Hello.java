@@ -1,8 +1,17 @@
+import java.util.Scanner;
 
 public class Hello {
-	
+
+	private static Scanner entrada;
+
 	public static void main(String[] args) {
-		System.out.println("Hello Word!");
+		String nome = "Juliana";
+		entrada = new Scanner(System.in);
+
+		System.out.println("Digite seu nome: ");
+		nome = entrada.next();
+
+		System.out.println("Hello, " + nome);
 	}
-	
+
 }
