@@ -48,6 +48,23 @@ public class ListaEncadeada<T extends Comparable<T>> {
 		tail = novo;
 	}
 	
+	public Nodo<T> find(T dado){
+		Nodo<T> nodo = head;
+		Nodo<T> prox;
+		
+		while (!nodo.equals(tail))
+		{
+			if ( nodo.getChave().equals(dado) )
+				break;
+			else
+			{
+				prox = nodo.getNext();
+				nodo = prox;
+			}				
+		}	
+		return nodo;
+	}
+	
 /*	public static void main(String[] args)
 	{
 		ListaEncadeada<String> lista = new ListaEncadeada<String>();
@@ -60,4 +77,17 @@ public class ListaEncadeada<T extends Comparable<T>> {
 		lista.print();
 	}*/
 
+	
+	public String toString(){
+		Nodo nodo = head;
+		String lista=null;
+		while(!nodo.equals(tail))
+		{
+			lista=(String) nodo.getChave() +" ";
+			lista+= (String) nodo.getData() + "\n";
+		}
+		
+		return lista;
+	}
+	
 }

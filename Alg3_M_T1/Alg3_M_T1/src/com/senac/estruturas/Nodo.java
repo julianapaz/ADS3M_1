@@ -26,17 +26,17 @@ public class Nodo<T extends Comparable<T>> implements Comparable<Nodo<T>> {
 	}
 	
 	
- 	private void setData(T dado)
+ 	public void setData(T dado)
  
 	{
 		this.dado = dado;
 	}
  	
- 	private T getChave(){
+ 	public T getChave(){
  		return chave;
  	}
  	
- 	private void setChave(){
+ 	public void setChave(){
  		this.chave = chave;
  	}
 
