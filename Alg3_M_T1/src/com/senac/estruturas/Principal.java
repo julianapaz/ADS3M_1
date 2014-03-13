@@ -73,15 +73,15 @@ public class Principal {
 
 		// insere no final do arquivo
 		
-		/*File arquivo = new File("agenda.txt"); //se já existir, será sobreescrito  
+		File arquivo = new File("agenda.txt"); 
 		FileWriter fw = new FileWriter(arquivo);  
 		BufferedWriter bw = new BufferedWriter(fw);  
 		
-		String contatos = agenda.toString();
+		String contatos = novoContato.getChave() + " " + novoContato.toString();
 		
 		bw.write(contatos);  
 		bw.flush();  
-		bw.close();*/
+		bw.close();
 
 	}
 }
