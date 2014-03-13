@@ -15,6 +15,15 @@ public class Recursao {
 			fat *= x;
 		return fat;
 	}
+	
+	public double fibonacci(int n) {
+		if (n<2) 
+			return 1;
+		else
+			return fibonacci(n-1) + fibonacci(n-2);
+
+		
+	}
 
 	public static void main(String[] args) {
 		Recursao numero = new Recursao();
@@ -40,8 +49,49 @@ public class Recursao {
 		end = System.currentTimeMillis();
 		out.println(end - start);
 
+		/******************************************/
 		start = System.currentTimeMillis();
-		out.println("Fatorial 400:" + numero.fatorial(400));
+		out.println("Fibonnaci 5" + numero.fibonacci(5));
+		end = System.currentTimeMillis();
+		out.println(end - start);
+		
+		start = System.currentTimeMillis();
+		out.println("Fibonnaci 10" + numero.fibonacci(10));
+		end = System.currentTimeMillis();
+		out.println(end - start);
+		
+		start = System.currentTimeMillis();
+		out.println("Fibonnaci  20" + numero.fibonacci(20));
+		end = System.currentTimeMillis();
+		out.println(end - start);
+		
+		start = System.currentTimeMillis();
+		out.println("Fibonnaci 30" + numero.fibonacci(30));
+		end = System.currentTimeMillis();
+		out.println(end - start);
+		start = System.currentTimeMillis();
+		out.println("Fibonnaci 33" + numero.fibonacci(33));
+		end = System.currentTimeMillis();
+		out.println(end - start);
+		
+		
+		start = System.currentTimeMillis();
+		out.println("Fibonnaci 35" + numero.fibonacci(35));
+		end = System.currentTimeMillis();
+		out.println(end - start);
+		
+		start = System.currentTimeMillis();
+		out.println("Fibonnaci 37" + numero.fibonacci(37));
+		end = System.currentTimeMillis();
+		out.println(end - start);
+		
+		start = System.currentTimeMillis();
+		out.println("Fibonnaci 40" + numero.fibonacci(40));
+		end = System.currentTimeMillis();
+		out.println(end - start);
+		
+		start = System.currentTimeMillis();
+		out.println("Fibonnaci 50" + numero.fibonacci(50));
 		end = System.currentTimeMillis();
 		out.println(end - start);
 
