@@ -12,6 +12,10 @@ public class ListaEncadeada<T extends Comparable<T>> {
 		return head;
 	}
 	
+	public Nodo<T> getTail() {
+		return tail;
+	}
+	
 	public void print()
 	{
 		Nodo<?> nodo = head;
@@ -48,22 +52,8 @@ public class ListaEncadeada<T extends Comparable<T>> {
 		tail = novo;
 	}
 	
-	public Nodo<T> find(T dado){
-		Nodo<T> nodo = head;
-		Nodo<T> prox;
-		
-		while (!nodo.equals(tail))
-		{
-			if ( nodo.getChave().equals(dado) )
-				break;
-			else
-			{
-				prox = nodo.getNext();
-				nodo = prox;
-			}				
-		}	
-		return nodo;
-	}
+	//public Nodo<T> find(T dado){
+	
 	
 /*	public static void main(String[] args)
 	{

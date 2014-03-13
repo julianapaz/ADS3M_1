@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Principal {
 
-	private static ListaEncadeada<String> agenda = new ListaEncadeada<String>();
+	private static ListaOrdenada<String> agenda = new ListaOrdenada<String>();
 
 	public static void main(String[] args) throws IOException {
 		int opcao = 1;
@@ -43,8 +43,37 @@ public class Principal {
 			}
 
 		}
+	}
+	
+	private static void buscaContato() {
+		Scanner entrada = new Scanner(System.in);
+		String nome;
+
+		out.println("Digite o nome para pesquisar:");
+		nome = entrada.next();
+
+		//out.println(agenda.find(nome));
+		agenda.find(nome);
+	}
+
+	private static void cadatraNovoContato() throws IOException {
+
+		Scanner entrada = new Scanner(System.in);
+		Nodo novoContato;
+		Contato contato = new Contato();
+		//String nome, telefone;
+
+		out.print("Digite o nome:");
+		contato.setNome(entrada.next());
+		out.print("Digite o telefone:");
+		contato.setTelefone(entrada.next());
+
+		novoContato = new Nodo(contato.getNome(),contato.getTelefone());
+		agenda.insert(novoContato);
+
+		// insere no final do arquivo
 		
-	/*	File arquivo = new File("agenda.txt"); //se já existir, será sobreescrito  
+		/*File arquivo = new File("agenda.txt"); //se já existir, será sobreescrito  
 		FileWriter fw = new FileWriter(arquivo);  
 		BufferedWriter bw = new BufferedWriter(fw);  
 		
@@ -53,47 +82,6 @@ public class Principal {
 		bw.write(contatos);  
 		bw.flush();  
 		bw.close();*/
-		
-		
-		System.exit(0);
-	}
-	
-	private static void buscaContato() {
-		Scanner entrada = new Scanner(System.in);
-		String nome;
-
-		out.println("Digite o nome para pesquisar:\n");
-		nome = entrada.next();
-
-		out.print(agenda.find(nome));
-
-	}
-
-	private static void cadatraNovoContato() throws IOException {
-
-		Scanner entrada = new Scanner(System.in);
-		Nodo novoContato;
-		String nome, telefone;
-
-		out.print("Digite o nome:");
-		nome = entrada.next();
-		out.print("Digite o telefone:");
-		telefone = entrada.next();
-
-		novoContato = new Nodo<>(nome, telefone);
-		agenda.insert(novoContato);
-
-		// insere no final do arquivo
-		
-		File arquivo = new File("agenda.txt"); //se já existir, será sobreescrito  
-		FileWriter fw = new FileWriter(arquivo);  
-		BufferedWriter bw = new BufferedWriter(fw);  
-		
-		String contatos = agenda.toString();
-		
-		bw.write(contatos);  
-		bw.flush();  
-		bw.close();
 
 	}
 }

@@ -1,5 +1,7 @@
 package com.senac.estruturas;
 
+import static java.lang.System.out;
+
 
 public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 
@@ -47,6 +49,25 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	}
 	
 	
+	public void find(T dado){
+		
+		Nodo<T> nodo = getHead();
+		Nodo<T> prox;
+		
+		while (nodo.equals(null))
+		{
+			if ( nodo.getChave().equals(dado) )
+				//break;
+				out.print(nodo);
+			
+			prox = nodo.getNext();
+			nodo = prox;
+						
+		}	
+		//return nodo;
+	}
+	
+	
 	public static void main(String[] args) {
 		ListaOrdenada<String> lista = new ListaOrdenada<String>();
 		
@@ -60,5 +81,7 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 		
 		lista.print();
 	}
+	
+	
 
 }
