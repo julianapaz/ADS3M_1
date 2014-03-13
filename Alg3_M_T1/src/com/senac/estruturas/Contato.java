@@ -30,5 +30,10 @@ public class Contato {
 		this.telefone = telefone;
 	}
 	
+	
+	public String toString() {
+		String res = nome + " " + telefone;
+		return res;
+	}
 
 }
