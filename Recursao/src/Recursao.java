@@ -26,15 +26,23 @@ public class Recursao {
 	}
 	
 	public double fibonacciIter(int n){
-		double f0 = 1;
+		double f=0;
 		double f1 = 1;
+		double f2 = 1;
+		
+		for(int x=2; x<=n; x++){
+			f = f2 + f1;
+			f2=f1;
+			f1=f;
+		}
+		return f;
 	}
 
 	public static void main(String[] args) {
-		Recursao numero = new Recursao();
+	Recursao numero = new Recursao();
 		long start, end;
 
-		start = System.currentTimeMillis();
+		/*start = System.currentTimeMillis();
 		out.println("Fatorial 5:" + numero.fatorial(5));
 		end = System.currentTimeMillis();
 		out.println(end - start);
@@ -54,7 +62,7 @@ public class Recursao {
 		end = System.currentTimeMillis();
 		out.println(end - start);
 
-		/******************************************/
+		*//******************************************//*
 		start = System.currentTimeMillis();
 		out.println("Fibonnaci 5" + numero.fibonacci(5));
 		end = System.currentTimeMillis();
@@ -98,8 +106,14 @@ public class Recursao {
 		start = System.currentTimeMillis();
 		out.println("Fibonnaci 50" + numero.fibonacci(50));
 		end = System.currentTimeMillis();
+		out.println(end - start);*/
+		
+		
+		start = System.currentTimeMillis();
+		out.println("Fibonnaci 50" + numero.fibonacciIter(50));
+		end = System.currentTimeMillis();
 		out.println(end - start);
-
+		
 	}
 
 }
