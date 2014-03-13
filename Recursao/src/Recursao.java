@@ -24,6 +24,11 @@ public class Recursao {
 
 		
 	}
+	
+	public double fibonacciIter(int n){
+		double f0 = 1;
+		double f1 = 1;
+	}
 
 	public static void main(String[] args) {
 		Recursao numero = new Recursao();
