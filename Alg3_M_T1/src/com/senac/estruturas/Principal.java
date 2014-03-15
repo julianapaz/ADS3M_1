@@ -4,6 +4,7 @@ import static java.lang.System.out;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -16,9 +17,14 @@ public class Principal {
 		int opcao = 1;
 		Scanner entrada = new Scanner(System.in);
 
+		carregaAgenda(new Scanner(new FileInputStream("agenda.txt")));
+
 		while (opcao != 0) {
-			out.print("AGENDA \nDigite sua opcao \n" + "1-Cadastrar\n"
-					+ "2-Buscar\n" + "3-Exibe lista\n" + "0-Sair\n");
+			out.print("AGENDA \nDigite sua opcao \n" 
+					+ "1-Cadastrar\n"
+					+ "2-Buscar\n"
+					+ "4-Exibir lista\n"
+					+ "0-Sair\n");
 			opcao = entrada.nextInt();
 
 			switch (opcao) {
@@ -33,18 +39,54 @@ public class Principal {
 				buscaContato();
 
 				break;
-
 			case 3:
+				//removeContato();
+				break;
+
+			case 4:
 				agenda.print();
 
-				
 			default:
+				
 				break;
 			}
 
 		}
 	}
-	
+
+	private static void carregaAgenda(Scanner arquivo) {
+
+		boolean podeGravar = false;
+		String nome = null;
+		String telefone = null;
+
+		while (arquivo.hasNext()) {
+
+			String cmd = arquivo.next().toLowerCase();
+			if (cmd.equals("nome")) {
+				nome = arquivo.next();
+				/*
+				 * novoContato.setNome(arquivo.next());
+				 * out.print(novoContato.getNome());
+				 */
+			}
+
+			if (cmd.equals("telefone")) {
+				telefone = arquivo.next();
+				/* novoContato.setTelefone(arquivo.next()); */
+				/* out.print(novoContato.getTelefone()); */
+				podeGravar = true;
+
+			}
+
+			if (podeGravar) {
+				agenda.insert(new Nodo<>(nome, telefone));
+				out.println("pode gravar");
+				podeGravar = false;
+			}
+		}
+	}
+
 	private static void buscaContato() {
 		Scanner entrada = new Scanner(System.in);
 		String nome;
@@ -52,36 +94,40 @@ public class Principal {
 		out.println("Digite o nome para pesquisar:");
 		nome = entrada.next();
 
-		//out.println(agenda.find(nome));
+		// out.println(agenda.find(nome));
 		agenda.find(nome);
 	}
 
 	private static void cadatraNovoContato() throws IOException {
-
+		// utilzando assim somente para teste, ainda sem entrada do teclado
+		
 		Scanner entrada = new Scanner(System.in);
-		Nodo novoContato;
-		Contato contato = new Contato();
-		//String nome, telefone;
-
-		out.print("Digite o nome:");
-		contato.setNome(entrada.next());
-		out.print("Digite o telefone:");
-		contato.setTelefone(entrada.next());
-
-		novoContato = new Nodo(contato.getNome(),contato.getTelefone());
-		agenda.insert(novoContato);
-
-		// insere no final do arquivo
 		
-		File arquivo = new File("agenda.txt"); 
-		FileWriter fw = new FileWriter(arquivo);  
-		BufferedWriter bw = new BufferedWriter(fw);  
+		Contato  novoContato= new Contato("beatriz", "518415985");
 		
-		String contatos = novoContato.getChave() + " " + novoContato.toString();
+		out.println("Digite o nome:");
+		novoContato.setNome(entrada.next());
 		
-		bw.write(contatos);  
-		bw.flush();  
+		out.println("Digite o telefone:");
+		novoContato.setTelefone(entrada.next());
+		
+		agenda.insert(new Nodo<>(novoContato.getNome(), novoContato.getTelefone()));
+
+		FileWriter arquivo = new FileWriter("agenda.txt", true);
+
+		BufferedWriter bw = new BufferedWriter(arquivo);
+		//out.print(novoContato);
+		bw.write(novoContato.toString());
+		bw.flush();
 		bw.close();
 
 	}
+	
+	/*private static void removeContato(){
+		Scanner entrada = new Scanner(System.in);
+		out.println("Digite o nome para excluir: ");
+		
+		
+		
+	}*/
 }

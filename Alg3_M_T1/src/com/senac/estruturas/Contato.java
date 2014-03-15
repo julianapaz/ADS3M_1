@@ -32,7 +32,7 @@ public class Contato {
 	
 	
 	public String toString() {
-		String res = nome + " " + telefone;
+		String res = "Nome " + nome + " Telefone " + telefone;
 		return res;
 	}
 
