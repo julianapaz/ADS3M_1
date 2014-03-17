@@ -69,4 +69,15 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	 * lista.print(); }
 	 */
 
+	
+	public void findInicial(char letra){
+		Nodo<?> nodo = getHead();
+		do {
+			String nome = (String) nodo.getChave();
+			if (letra == nome.charAt(0))
+				out.println(nodo);
+			nodo = nodo.getNext();
+		} while (nodo != null);
+
+	}
 }

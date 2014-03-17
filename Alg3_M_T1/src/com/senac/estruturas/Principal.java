@@ -59,6 +59,7 @@ public class Principal {
 		boolean podeGravar = false;
 		String nome = null;
 		String telefone = null;
+		//int index = 0;
 
 		while (arquivo.hasNext()) {
 
@@ -80,8 +81,11 @@ public class Principal {
 			}
 
 			if (podeGravar) {
+				Contato novoContato = new Contato(nome, telefone);
+				//index++;
+				//agenda.insert(new Nodo<>(index,novoContato));
 				agenda.insert(new Nodo<>(nome, telefone));
-				out.println("pode gravar");
+				//out.println("pode gravar");
 				podeGravar = false;
 			}
 		}
@@ -89,13 +93,16 @@ public class Principal {
 
 	private static void buscaContato() {
 		Scanner entrada = new Scanner(System.in);
-		String nome;
+		//String nome;
+		String inicial = null;
 
-		out.println("Digite o nome para pesquisar:");
-		nome = entrada.next();
-
-		// out.println(agenda.find(nome));
-		agenda.find(nome);
+		//out.println("Digite o nome para pesquisar:");
+		//nome = entrada.next();
+		out.println("Digite a letra inicial:");
+		inicial = entrada.nextLine();
+		
+		//agenda.find(nome);
+		agenda.findInicial(inicial.charAt(0));
 	}
 
 	private static void cadatraNovoContato() throws IOException {
@@ -106,7 +113,7 @@ public class Principal {
 		Contato  novoContato= new Contato("beatriz", "518415985");
 		
 		out.println("Digite o nome:");
-		novoContato.setNome(entrada.next());
+		novoContato.setNome(entrada.nextLine());
 		
 		out.println("Digite o telefone:");
 		novoContato.setTelefone(entrada.next());
@@ -117,6 +124,8 @@ public class Principal {
 
 		BufferedWriter bw = new BufferedWriter(arquivo);
 		//out.print(novoContato);
+		//n funciona com tail, pega o ultimo salvo na agenda.txt
+		//bw.write(agenda.getTail().toString());
 		bw.write(novoContato.toString());
 		bw.flush();
 		bw.close();

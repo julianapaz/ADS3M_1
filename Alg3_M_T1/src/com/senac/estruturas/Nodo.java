@@ -3,8 +3,8 @@ package com.senac.estruturas;
 public class Nodo<T extends Comparable<T>> implements Comparable<Nodo<T>> {
 
 	private T chave;
-	private Nodo<T> next;
 	private T dado;
+	private Nodo<T> next;
 	
 	public Nodo()
 	{
