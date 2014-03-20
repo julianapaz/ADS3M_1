@@ -53,8 +53,7 @@ public class ListaEncadeada<T extends Comparable<T>> {
 	}
 	
 	//public Nodo<T> find(T dado){
-	
-	
+		
 /*	public static void main(String[] args)
 	{
 		ListaEncadeada<String> lista = new ListaEncadeada<String>();
@@ -67,6 +66,8 @@ public class ListaEncadeada<T extends Comparable<T>> {
 		lista.print();
 	}*/
 
+	
+	
 	
 	public String toString(){
 		Nodo nodo = head;

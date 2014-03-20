@@ -85,15 +85,46 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	}
 	
 	
-	public void findInicial(char letra){
-		Nodo<?> nodo = getHead();
+	public Nodo<T> findInicial(char letra){
+		Nodo<T> nodo = getHead();
+		Nodo<T> anterior=null;
 		String nome;
 		do {
 			nome = (String) nodo.getChave();
 			if (letra == nome.charAt(0))
 				out.println(nodo);
+			
 			nodo = nodo.getNext();
 		} while (nome.charAt(0) != letra );
-
+		return nodo;
 	}
+
+	
+	
+	public Nodo<T> avanca(Nodo<T> atual)
+	{		
+		if(atual.getNext().equals(null))
+			return atual;
+		else
+			return atual.getNext();
+		
+	}
+	
+	public Nodo<T> retorna(Nodo<T> atual)
+	{
+	//	Nodo<T> anterior = null;
+		Nodo<T> nodo = getHead();
+		
+			while(!nodo.getNext().equals(null))
+			{
+			if(atual.equals(nodo.getNext()))
+					break;
+			else
+				nodo = nodo.getNext();
+			}
+		
+	
+		return nodo;
+	}
+	
 }
