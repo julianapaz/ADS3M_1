@@ -3,7 +3,6 @@ package com.senac.estruturas;
 import static java.lang.System.out;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,9 +17,12 @@ public class Principal {
 
 	public static void main(String[] args) throws IOException {
 		int opcao = 1;
-		Scanner entrada = new Scanner(System.in);
 
 		carregaAgenda(new Scanner(new FileInputStream("agenda.txt")));
+		
+		/* TESTE PARA EXIBIR O PRIMEIRO E ULTIMO NOME
+		 * out.println(agenda.getHead());
+		 * out.println(agenda.getTail());*/
 
 		while (opcao != 0) {
 			out.print("AGENDA \nDigite sua opcao \n" + "1-Cadastrar\n"
@@ -30,15 +32,11 @@ public class Principal {
 
 			switch (opcao) {
 			case 1:
-				// cadastra novo contato
 				cadatraNovoContato();
-
 				break;
 
 			case 2:
-				// busca contato
 				buscaContato();
-
 				break;
 			case 3:
 				removeContato();
@@ -46,6 +44,7 @@ public class Principal {
 
 			case 4:
 				agenda.print();
+				break;
 
 			default:
 
@@ -59,7 +58,6 @@ public class Principal {
 
 		while (arquivo.hasNext()) {
 			nome = arquivo.next().toLowerCase();
-
 			telefone = arquivo.next().toLowerCase();
 
 			agenda.insert(new Nodo<>(nome, telefone));
@@ -67,34 +65,33 @@ public class Principal {
 	}
 
 	private static void buscaContato() {
-		Scanner entrada = new Scanner(System.in);
 
-		String inicial = null;
+		String letra = null;
 
 		out.println("Digite a letra inicial:");
-		inicial = entrada.nextLine();
+		letra = entrada.next();
 
-		// COLOCAR PARA EXIBIR O PRIMEIRO NOME ENCONTRADO NA LISTA
-		Nodo nomeAtual = agenda.findInicial(inicial.charAt(0));
-		Nodo ultimoNome;
+		//EXIBE O PRIMEIRO NOME ENCONTRADO NA LISTA
+		Nodo nomeAtual = agenda.findInicial(letra.charAt(0));
+
 		int op = -1;
-
+		//LACO PARA NAVEGAR NA AGENDA
 		while (op != 0) {
-			out.println("1 - Avanca\n2 - Retornar");
+			out.println("1 - ANTERIOR\n2 - PROXIMO\n0 - VOLTAR AO MENU");
 			op = entrada.nextInt();
 
 			if (op == 1) {
-				nomeAtual = agenda.avanca(nomeAtual);
-				out.println(nomeAtual);
-							}
-
-			else if (op == 2) {
+				
 				nomeAtual = agenda.retorna(nomeAtual);
 				out.println(nomeAtual);
+
 			}
 
-			else
-				out.println("Opcao invalida!");
+			if (op == 2) {
+
+				nomeAtual = agenda.avanca(nomeAtual);
+				out.println(nomeAtual);
+			}
 		}
 	}
 
@@ -102,7 +99,7 @@ public class Principal {
 		// utilzando assim somente para teste, ainda sem entrada do teclado
 
 		out.println("Digite o nome:");
-		nome = entrada.nextLine();
+		nome = entrada.next();
 
 		out.println("Digite o telefone:");
 		telefone = entrada.next();
