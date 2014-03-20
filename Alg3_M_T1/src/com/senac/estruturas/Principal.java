@@ -12,6 +12,9 @@ import java.util.Scanner;
 public class Principal {
 
 	private static ListaOrdenada<String> agenda = new ListaOrdenada<String>();
+	
+	protected static String nome, telefone;
+	protected static Scanner entrada = new Scanner(System.in);
 
 	public static void main(String[] args) throws IOException {
 		int opcao = 1;
@@ -23,6 +26,7 @@ public class Principal {
 			out.print("AGENDA \nDigite sua opcao \n" 
 					+ "1-Cadastrar\n"
 					+ "2-Buscar\n"
+					+ "3-Remover\n"
 					+ "4-Exibir lista\n"
 					+ "0-Sair\n");
 			opcao = entrada.nextInt();
@@ -40,7 +44,7 @@ public class Principal {
 
 				break;
 			case 3:
-				//removeContato();
+				removeContato();
 				break;
 
 			case 4:
@@ -56,51 +60,24 @@ public class Principal {
 
 	private static void carregaAgenda(Scanner arquivo) {
 
-		boolean podeGravar = false;
-		String nome = null;
-		String telefone = null;
-		//int index = 0;
-
-		while (arquivo.hasNext()) {
-
-			String cmd = arquivo.next().toLowerCase();
-			if (cmd.equals("nome")) {
-				nome = arquivo.next();
-				/*
-				 * novoContato.setNome(arquivo.next());
-				 * out.print(novoContato.getNome());
-				 */
-			}
-
-			if (cmd.equals("telefone")) {
-				telefone = arquivo.next();
-				/* novoContato.setTelefone(arquivo.next()); */
-				/* out.print(novoContato.getTelefone()); */
-				podeGravar = true;
-
-			}
-
-			if (podeGravar) {
-				Contato novoContato = new Contato(nome, telefone);
-				//index++;
-				//agenda.insert(new Nodo<>(index,novoContato));
-				agenda.insert(new Nodo<>(nome, telefone));
-				//out.println("pode gravar");
-				podeGravar = false;
-			}
+		while (arquivo.hasNext())
+		{		
+			nome = arquivo.next().toLowerCase();
+			
+			telefone = arquivo.next().toLowerCase();
+			
+			agenda.insert(new Nodo<>(nome, telefone));
 		}
 	}
 
 	private static void buscaContato() {
 		Scanner entrada = new Scanner(System.in);
-		//String nome;
+
 		String inicial = null;
 
-		//out.println("Digite o nome para pesquisar:");
-		//nome = entrada.next();
 		out.println("Digite a letra inicial:");
 		inicial = entrada.nextLine();
-		
+		//COLOCAR PARA EXIBIR O PRIMEIRO NOME ENCONTRADO NA LISTA 
 		//agenda.find(nome);
 		agenda.findInicial(inicial.charAt(0));
 	}
@@ -108,35 +85,28 @@ public class Principal {
 	private static void cadatraNovoContato() throws IOException {
 		// utilzando assim somente para teste, ainda sem entrada do teclado
 		
-		Scanner entrada = new Scanner(System.in);
 		
-		Contato  novoContato= new Contato("beatriz", "518415985");
-		
+					
 		out.println("Digite o nome:");
-		novoContato.setNome(entrada.nextLine());
+		nome = entrada.nextLine();
 		
 		out.println("Digite o telefone:");
-		novoContato.setTelefone(entrada.next());
+		telefone = entrada.next();
 		
-		agenda.insert(new Nodo<>(novoContato.getNome(), novoContato.getTelefone()));
+		agenda.insert(new Nodo<>(nome, telefone));
 
 		FileWriter arquivo = new FileWriter("agenda.txt", true);
 
 		BufferedWriter bw = new BufferedWriter(arquivo);
-		//out.print(novoContato);
-		//n funciona com tail, pega o ultimo salvo na agenda.txt
-		//bw.write(agenda.getTail().toString());
-		bw.write(novoContato.toString());
+		
+		bw.write(nome + " " + telefone);
 		bw.flush();
 		bw.close();
-
 	}
 	
-	/*private static void removeContato(){
-		Scanner entrada = new Scanner(System.in);
-		out.println("Digite o nome para excluir: ");
-		
-		
-		
-	}*/
+	public static void removeContato(){
+		out.println("Digite o nome para excluir");
+		nome = entrada.next();
+		agenda.remove(nome);
+	}
 }

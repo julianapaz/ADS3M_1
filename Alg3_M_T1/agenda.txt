@@ -1,8 +1,9 @@
-Nome juliana Telefone 5184159527
-Nome julio Telefone 91138303
-Nome sandra Telefone 85079326
-Nome ana Telefone 85079865
-Nome rafael Telefone 54545
-Nome raul Telefone 54545
-Nome: sandra Telefone: 85079326
-Nome aline Telefone 514875487
+juliana 5184159527
+julio 91138303
+sandra 85079326
+ana 85079865
+rafael 54545
+raul 54545
+aline 514875487
+isadora 545454212
+kaio 545455
