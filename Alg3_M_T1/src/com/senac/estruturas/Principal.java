@@ -127,7 +127,9 @@ public class Principal {
 		out.println("Digite o nome para excluir");
 		nome = entrada.next();
 		agenda.remove(nome);
-		FileWriter arquivo = new FileWriter("agenda.txt");
+		
+		
+		FileWriter arquivo = new FileWriter("agenda.txt", true);
 
 		BufferedWriter bw = new BufferedWriter(arquivo);
 		Nodo nodo = agenda.getHead();
@@ -136,8 +138,10 @@ public class Principal {
 		{
 			String contato = (String)nodo.getChave() + " " + (String)nodo.getData();
 			bw.write(contato);
+			nodo = nodo.getNext();
+			bw.flush();
+			bw.close();
 		}
-		bw.flush();
-		bw.close();
+		
 	}
 }
