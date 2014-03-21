@@ -101,7 +101,7 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	public Nodo<T> avanca(Nodo<T> atual) {
 		// se o nodo atual é o fim, retorna ele mesmo
 		if (atual.equals(getTail()))
-			return atual;
+			return getHead();
 		else
 			return atual.getNext();
 	}
@@ -111,7 +111,13 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 
 		//enquanto nao for o ultimo
 		while (!nodo.getNext().equals(null)) {
-			if (atual.equals(getHead()) || atual.equals(nodo.getNext()))
+			//if (atual.equals(getHead()) || atual.equals(nodo.getNext()))
+			if(atual.equals(getHead()))
+			{
+				nodo = getTail();
+				break;
+			}
+			else if(atual.equals(nodo.getNext()))
 				break;
 			else
 				nodo = nodo.getNext();
