@@ -15,7 +15,7 @@ public class Principal {
 	protected static String nome, telefone;
 	protected static Scanner entrada = new Scanner(System.in);
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		int opcao = 1;
 
 		carregaAgenda(new Scanner(new FileInputStream("agenda.txt")));
@@ -64,7 +64,8 @@ public class Principal {
 		}
 	}
 
-	private static void buscaContato() {
+	private static void buscaContato() 
+	{
 
 		String letra = null;
 
@@ -72,11 +73,18 @@ public class Principal {
 		letra = entrada.next();
 
 		//EXIBE O PRIMEIRO NOME ENCONTRADO NA LISTA
-		Nodo nomeAtual = agenda.findInicial(letra.charAt(0));
+		out.println(agenda.findInicial(letra.charAt(0)));	
+		navega(agenda.findInicial(letra.charAt(0)));
 
+	
+	}
+	
+	private static void navega(Nodo nomeAtual)
+	{
 		int op = -1;
 		//LACO PARA NAVEGAR NA AGENDA
-		while (op != 0) {
+		while (op != 0)
+		{
 			out.println("1 - ANTERIOR\n2 - PROXIMO\n0 - VOLTAR AO MENU");
 			op = entrada.nextInt();
 
@@ -93,7 +101,7 @@ public class Principal {
 				out.println(nomeAtual);
 			}
 		}
-	}
+}
 
 	private static void cadatraNovoContato() throws IOException {
 		// utilzando assim somente para teste, ainda sem entrada do teclado
@@ -115,9 +123,21 @@ public class Principal {
 		bw.close();
 	}
 
-	public static void removeContato() {
+	public static void removeContato() throws Exception {
 		out.println("Digite o nome para excluir");
 		nome = entrada.next();
 		agenda.remove(nome);
+		FileWriter arquivo = new FileWriter("agenda.txt");
+
+		BufferedWriter bw = new BufferedWriter(arquivo);
+		Nodo nodo = agenda.getHead();
+		
+		while(nodo.getNext().equals(null))
+		{
+			String contato = (String)nodo.getChave() + " " + (String)nodo.getData();
+			bw.write(contato);
+		}
+		bw.flush();
+		bw.close();
 	}
 }

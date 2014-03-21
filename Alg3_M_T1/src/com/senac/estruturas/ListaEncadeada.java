@@ -18,7 +18,7 @@ public class ListaEncadeada<T extends Comparable<T>> {
 	
 	public void print()
 	{
-		Nodo<?> nodo = head;
+		Nodo<T> nodo = head;
 		do {
 			
 			out.println(nodo);
@@ -65,9 +65,6 @@ public class ListaEncadeada<T extends Comparable<T>> {
 		
 		lista.print();
 	}*/
-
-	
-	
 	
 	public String toString(){
 		Nodo nodo = head;
