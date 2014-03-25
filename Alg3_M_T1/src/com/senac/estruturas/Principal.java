@@ -20,31 +20,33 @@ public class Principal {
 
 		carregaAgenda(new Scanner(new FileInputStream("agenda.txt")));
 		
-		while (opcao != 0) {
+		while (opcao != 0)
+		{
 			out.print("AGENDA \nDigite sua opcao \n" + "1-Cadastrar\n"
 					+ "2-Buscar\n" + "3-Remover\n" + "4-Exibir lista\n"
 					+ "0-Sair\n");
 			opcao = entrada.nextInt();
 
-			switch (opcao) {
-			case 1:
-				cadatraNovoContato();
-				break;
+			switch (opcao) 
+			{
+				case 1:
+					cadatraNovoContato();
+					break;
 
-			case 2:
-				buscaContato();
-				break;
-			case 3:
-				removeContato();
-				break;
+				case 2:
+					buscaContato();
+					break;
+				case 3:
+					removeContato();
+					break;
 
-			case 4:
-				agenda.print();
-				break;
+				case 4:
+					agenda.print();
+					break;
 
-			default:
+				default:
 
-				break;
+					break;
 			}
 
 		}
@@ -52,9 +54,10 @@ public class Principal {
 
 	private static void carregaAgenda(Scanner arquivo) {
 
-		while (arquivo.hasNext()) {
-			nome = arquivo.next().toLowerCase();
-			telefone = arquivo.next().toLowerCase();
+		while (arquivo.hasNext()) 
+		{
+			nome = arquivo.next();
+			telefone = arquivo.next();
 
 			agenda.insert(new Nodo<>(nome, telefone));
 		}
@@ -81,17 +84,18 @@ public class Principal {
 		//LACO PARA NAVEGAR NA AGENDA
 		while (op != 0)
 		{
-			out.println("1 - ANTERIOR\n2 - PROXIMO\n0 - VOLTAR AO MENU");
+			out.println("1)ANTERIOR    2)PROXIMO\n0 - VOLTAR AO MENU");
 			op = entrada.nextInt();
 
-			if (op == 1) {
-				
+			if (op == 1) 
+			{
 				nomeAtual = agenda.retorna(nomeAtual);
 				out.println(nomeAtual);
 
 			}
 
-			if (op == 2) {
+			if (op == 2)
+			{
 
 				nomeAtual = agenda.avanca(nomeAtual);
 				out.println(nomeAtual);
@@ -99,7 +103,8 @@ public class Principal {
 		}
 }
 
-	private static void cadatraNovoContato() throws IOException {
+	private static void cadatraNovoContato() throws IOException 
+	{
 		out.println("Digite o nome:");
 		nome = entrada.next();
 
@@ -117,12 +122,12 @@ public class Principal {
 		bw.close();
 	}
 
-	public static void removeContato() throws Exception {
+	public static void removeContato() throws Exception
+	{
 		out.println("Digite o nome para excluir");
 		nome = entrada.next();
 		agenda.remove(nome);
-		
-		
+				
 		FileWriter arquivo = new FileWriter("agenda.txt", true);
 
 		BufferedWriter bw = new BufferedWriter(arquivo);
