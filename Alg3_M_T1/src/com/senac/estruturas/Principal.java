@@ -68,7 +68,6 @@ public class Principal {
 
 	private static void buscaContato() 
 	{
-
 		String letra = null;
 
 		out.println("Digite a letra inicial:");
@@ -77,8 +76,6 @@ public class Principal {
 		//EXIBE O PRIMEIRO NOME ENCONTRADO NA LISTA
 		out.println(agenda.findInicial(letra.charAt(0)));	
 		navega(agenda.findInicial(letra.charAt(0)));
-
-	
 	}
 	
 	private static void navega(Nodo nomeAtual)
@@ -130,7 +127,19 @@ public class Principal {
 		out.println("Digite o nome para excluir");
 		nome = entrada.next();
 		agenda.remove(nome);	
-		atualizaArquivo();
+		FileWriter arquivo = new FileWriter("agenda.txt", true);
+
+		BufferedWriter bw = new BufferedWriter(arquivo);
+		Nodo nodo = agenda.getHead();
+		
+		while(nodo.getNext().equals(null))
+		{
+			String contato = (String)nodo.getChave() + " " + (String)nodo.getData();
+			bw.write(contato);
+			nodo = nodo.getNext();
+			bw.flush();
+			bw.close();
+		}	
 	}
 	
 	public static void atualizaArquivo() throws IOException
@@ -148,5 +157,6 @@ public class Principal {
 			bw.flush();
 			bw.close();
 		}
+		
 	}
 }
