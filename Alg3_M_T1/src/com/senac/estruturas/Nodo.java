@@ -57,7 +57,7 @@ public class Nodo<T extends Comparable<T>> implements Comparable<Nodo<T>> {
 	}
 	
 	public String toString(){
-		String res = "Nome: " + getChave() + " Telefone: "
+		String res = getChave() + " "
 				+ getData();
 		
 		return res;

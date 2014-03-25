@@ -12,6 +12,7 @@ public class Principal {
 
 	private static ListaOrdenada<String> agenda = new ListaOrdenada<String>();
 
+	//private static Contato novoContato = new Contato();
 	protected static String nome, telefone;
 	protected static Scanner entrada = new Scanner(System.in);
 
@@ -55,10 +56,12 @@ public class Principal {
 	private static void carregaAgenda(Scanner arquivo) {
 
 		while (arquivo.hasNext()) 
-		{
+		{	
 			nome = arquivo.next();
+			//novoContato.setNome(nome = arquivo.next());
 			telefone = arquivo.next();
-
+			//novoContato.setTelefone(telefone = arquivo.next());
+			//agenda.insert(new Nodo<>(novoContato.getNome(), novoContato.getTelefone()));
 			agenda.insert(new Nodo<>(nome, telefone));
 		}
 	}
@@ -126,8 +129,12 @@ public class Principal {
 	{
 		out.println("Digite o nome para excluir");
 		nome = entrada.next();
-		agenda.remove(nome);
-				
+		agenda.remove(nome);	
+		atualizaArquivo();
+	}
+	
+	public static void atualizaArquivo() throws IOException
+	{
 		FileWriter arquivo = new FileWriter("agenda.txt", true);
 
 		BufferedWriter bw = new BufferedWriter(arquivo);
@@ -141,6 +148,5 @@ public class Principal {
 			bw.flush();
 			bw.close();
 		}
-		
 	}
 }

@@ -73,14 +73,19 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 		Nodo<T> nodo = getHead();
 		Nodo anterior, prox;
 
-		while (!nodo.getNext().getChave().equals(chave))
-
-			nodo = nodo.getNext();
-		if(nodo != null)
+		if(chave.equals(getHead().getChave()))
+				setHead(getHead().getNext());
+		else
 		{
-			anterior = nodo;
-			prox = nodo.getNext();
-			anterior.setNext(prox.getNext());
+			while (!nodo.getNext().getChave().equals(chave))
+
+				nodo = nodo.getNext();
+			if(nodo != null)
+			{
+				anterior = nodo;
+				prox = nodo.getNext();
+				anterior.setNext(prox.getNext());
+			}
 		}
 
 	}

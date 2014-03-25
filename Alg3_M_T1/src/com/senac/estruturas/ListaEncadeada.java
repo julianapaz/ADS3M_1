@@ -16,6 +16,11 @@ public class ListaEncadeada<T extends Comparable<T>> {
 		return tail;
 	}
 	
+	public void setHead(Nodo<T> novoHead)
+	{
+		this.head = novoHead;
+	}
+	
 	public void print()
 	{
 		Nodo<T> nodo = head;
