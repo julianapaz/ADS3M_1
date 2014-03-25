@@ -3,6 +3,7 @@ package com.senac.estruturas;
 import static java.lang.System.out;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -144,7 +145,8 @@ public class Principal {
 	
 	public static void atualizaArquivo() throws IOException
 	{
-		FileWriter arquivo = new FileWriter("agenda.txt", true);
+		new File("temp.txt");
+		FileWriter arquivo = new FileWriter("temp.txt", true);
 
 		BufferedWriter bw = new BufferedWriter(arquivo);
 		Nodo nodo = agenda.getHead();
@@ -157,6 +159,8 @@ public class Principal {
 			bw.flush();
 			bw.close();
 		}
+		
+		new File("temp").renameTo(new File("agenda.txt"));
 		
 	}
 }
