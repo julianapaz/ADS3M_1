@@ -20,10 +20,6 @@ public class Principal {
 
 		carregaAgenda(new Scanner(new FileInputStream("agenda.txt")));
 		
-		/* TESTE PARA EXIBIR O PRIMEIRO E ULTIMO NOME
-		 * out.println(agenda.getHead());
-		 * out.println(agenda.getTail());*/
-
 		while (opcao != 0) {
 			out.print("AGENDA \nDigite sua opcao \n" + "1-Cadastrar\n"
 					+ "2-Buscar\n" + "3-Remover\n" + "4-Exibir lista\n"
@@ -104,8 +100,6 @@ public class Principal {
 }
 
 	private static void cadatraNovoContato() throws IOException {
-		// utilzando assim somente para teste, ainda sem entrada do teclado
-
 		out.println("Digite o nome:");
 		nome = entrada.next();
 
