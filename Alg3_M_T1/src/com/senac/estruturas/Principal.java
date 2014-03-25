@@ -79,7 +79,7 @@ public class Principal {
 		navega(agenda.findInicial(letra.charAt(0)));
 	}
 	
-	private static void navega(Nodo nomeAtual)
+	private static void navega(Nodo<String> nomeAtual)
 	{
 		int op = -1;
 		//LACO PARA NAVEGAR NA AGENDA
@@ -128,39 +128,27 @@ public class Principal {
 		out.println("Digite o nome para excluir");
 		nome = entrada.next();
 		agenda.remove(nome);	
-		FileWriter arquivo = new FileWriter("agenda.txt", true);
-
-		BufferedWriter bw = new BufferedWriter(arquivo);
-		Nodo nodo = agenda.getHead();
-		
-		while(nodo.getNext().equals(null))
-		{
-			String contato = (String)nodo.getChave() + " " + (String)nodo.getData();
-			bw.write(contato);
-			nodo = nodo.getNext();
-			bw.flush();
-			bw.close();
-		}	
+		atualizaArquivo();
 	}
 	
 	public static void atualizaArquivo() throws IOException
 	{
-		new File("temp.txt");
-		FileWriter arquivo = new FileWriter("temp.txt", true);
+		new File("agenda.txt");
+		FileWriter arquivo = new FileWriter("agenda.txt");
 
 		BufferedWriter bw = new BufferedWriter(arquivo);
-		Nodo nodo = agenda.getHead();
+		Nodo<String> nodo = agenda.getHead();
 		
-		while(nodo.getNext().equals(null))
+		while(nodo != null)
 		{
 			String contato = (String)nodo.getChave() + " " + (String)nodo.getData();
 			bw.write(contato);
+			bw.newLine();
 			nodo = nodo.getNext();
-			bw.flush();
-			bw.close();
+			
 		}
-		
-		new File("temp").renameTo(new File("agenda.txt"));
+		bw.flush();
+		bw.close();
 		
 	}
 }
