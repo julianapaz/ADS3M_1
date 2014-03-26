@@ -97,7 +97,6 @@ public class Principal {
 
 			if (op == 2)
 			{
-
 				nomeAtual = agenda.avanca(nomeAtual);
 				out.println(nomeAtual);
 			}
@@ -113,16 +112,23 @@ public class Principal {
 		telefone = entrada.next();
 
 		agenda.insert(new Nodo<>(nome, telefone));
+		
+		insereNoArquivo(nome, telefone);
 
+	}
+	
+	public static void insereNoArquivo(String nome, String telefone) throws IOException
+	{
 		FileWriter arquivo = new FileWriter("agenda.txt", true);
 
 		BufferedWriter bw = new BufferedWriter(arquivo);
 
 		bw.write(nome + " " + telefone);
+		bw.newLine();
 		bw.flush();
 		bw.close();
 	}
-
+	
 	public static void removeContato() throws Exception
 	{
 		out.println("Digite o nome para excluir");
@@ -130,6 +136,8 @@ public class Principal {
 		agenda.remove(nome);	
 		atualizaArquivo();
 	}
+	
+
 	
 	public static void atualizaArquivo() throws IOException
 	{
@@ -145,7 +153,6 @@ public class Principal {
 			bw.write(contato);
 			bw.newLine();
 			nodo = nodo.getNext();
-			
 		}
 		bw.flush();
 		bw.close();
