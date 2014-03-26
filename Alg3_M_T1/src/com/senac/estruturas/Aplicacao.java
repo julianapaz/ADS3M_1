@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Principal {
+public class Aplicacao {
 
 	private static ListaOrdenada<String> agenda = new ListaOrdenada<String>();
 
@@ -92,7 +92,6 @@ public class Principal {
 			{
 				nomeAtual = agenda.retorna(nomeAtual);
 				out.println(nomeAtual);
-
 			}
 
 			if (op == 2)
