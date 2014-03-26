@@ -73,14 +73,14 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 		Nodo<T> nodo = getHead();
 		Nodo anterior, prox;
 
-		if(chave.equals(getHead().getChave()))
+		if (chave.equals(getHead().getChave()))
 				setHead(getHead().getNext());
 		else
 		{
 			while (!nodo.getNext().getChave().equals(chave))
-
 				nodo = nodo.getNext();
-			if(nodo != null)
+			
+			if (nodo != null)
 			{
 				anterior = nodo;
 				prox = nodo.getNext();
@@ -90,18 +90,20 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 
 	}
 
-	public Nodo<T> findInicial(char letra) {
+	public Nodo<T> findInicial(char letra)
+	{
 		Nodo<T> nodo = getHead();
 		Nodo<T> anterior = null;
 		String nome;
 		
 		do {
-			nome = (String) nodo.getChave();
-			if (letra == nome.charAt(0)) {
-				break;
+				nome = (String) nodo.getChave();
+				if (letra == nome.charAt(0)) {
+					break;
 			}
 			nodo = nodo.getNext();
 		} while (nodo != null);
+		
 		return nodo;
 	}
 
@@ -109,6 +111,7 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 		// se o nodo atual é o fim, retorna ele mesmo
 		if (atual.equals(getTail()))
 			return getHead();
+		
 		else
 			return atual.getNext();
 	}
@@ -116,18 +119,21 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	public Nodo<T> retorna(Nodo<T> atual) {
 		Nodo<T> nodo = getHead();
 		
-		if(atual.equals(getHead()))
+		if (atual.equals(getHead()))
 			nodo = getTail();
+		
 		else
 		{
 			//enquanto nao for o ultimo
-			while (!nodo.getNext().equals(null)) {
-				if(atual.equals(nodo.getNext()))
+			while (!nodo.getNext().equals(null)) //uso equals ou !=
+			{
+				if (atual.equals(nodo.getNext()))
 					break;
 				else
 					nodo = nodo.getNext();
 			}
 		}
+		
 		return nodo;
 	}
 

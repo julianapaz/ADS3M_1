@@ -69,18 +69,5 @@ public class ListaEncadeada<T extends Comparable<T>> {
 		lista.insert(new Nodo<String>("Carlos"));
 		
 		lista.print();
-	}*/
-	
-	public String toString(){
-		Nodo nodo = head;
-		String lista=null;
-		while(!nodo.equals(tail))
-		{
-			lista=(String) nodo.getChave() +" ";
-			lista+= (String) nodo.getData() + "\n";
-		}
-		
-		return lista;
-	}
-	
+	}*/	
 }

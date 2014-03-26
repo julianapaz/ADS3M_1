@@ -1,9 +1,7 @@
 package com.senac.estruturas;
 
 import static java.lang.System.out;
-
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,10 +15,11 @@ public class Aplicacao {
 	protected static String nome, telefone;
 	protected static Scanner entrada = new Scanner(System.in);
 
-	public static void main(String[] args) throws Exception {
-		int opcao = 1;
-
+	public static void main(String[] args) throws Exception 
+	{
 		carregaAgenda(new Scanner(new FileInputStream("agenda.txt")));
+		
+		int opcao = -1;
 		
 		while (opcao != 0)
 		{
@@ -76,6 +75,7 @@ public class Aplicacao {
 
 		//EXIBE O PRIMEIRO NOME ENCONTRADO NA LISTA
 		out.println(agenda.findInicial(letra.charAt(0)));	
+		
 		navega(agenda.findInicial(letra.charAt(0)));
 	}
 	
@@ -119,7 +119,6 @@ public class Aplicacao {
 	public static void insereNoArquivo(String nome, String telefone) throws IOException
 	{
 		FileWriter arquivo = new FileWriter("agenda.txt", true);
-
 		BufferedWriter bw = new BufferedWriter(arquivo);
 
 		bw.write(nome + " " + telefone);
@@ -136,17 +135,14 @@ public class Aplicacao {
 		atualizaArquivo();
 	}
 	
-
-	
 	public static void atualizaArquivo() throws IOException
 	{
-		new File("agenda.txt");
 		FileWriter arquivo = new FileWriter("agenda.txt");
 
 		BufferedWriter bw = new BufferedWriter(arquivo);
 		Nodo<String> nodo = agenda.getHead();
 		
-		while(nodo != null)
+		while (nodo != null)
 		{
 			String contato = (String)nodo.getChave() + " " + (String)nodo.getData();
 			bw.write(contato);
@@ -155,6 +151,5 @@ public class Aplicacao {
 		}
 		bw.flush();
 		bw.close();
-		
 	}
 }
