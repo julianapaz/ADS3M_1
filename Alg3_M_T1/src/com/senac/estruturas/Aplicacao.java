@@ -1,8 +1,12 @@
 package com.senac.estruturas;
 
 import static java.lang.System.out;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -10,14 +14,16 @@ import java.util.Scanner;
 public class Aplicacao {
 
 	private static ListaOrdenada<String> agenda = new ListaOrdenada<String>();
-
+	private static final char MARCADOR = '*';
 	//private static Contato novoContato = new Contato();
 	protected static String nome, telefone;
 	protected static Scanner entrada = new Scanner(System.in);
 
 	public static void main(String[] args) throws Exception 
 	{
-		carregaAgenda(new Scanner(new FileInputStream("agenda.txt")));
+		FileInputStream arquivo = new FileInputStream("agenda.txt");
+		carregaAgenda(new Scanner(arquivo));
+		arquivo.close();
 		
 		int opcao = -1;
 		
@@ -51,19 +57,29 @@ public class Aplicacao {
 			}
 
 		}
+		
 	}
 
-	private static void carregaAgenda(Scanner arquivo) {
-
+	private static void carregaAgenda(Scanner arquivo)
+	{
+		char nomeTeste;
+		
 		while (arquivo.hasNext()) 
 		{	
 			nome = arquivo.next();
 			//novoContato.setNome(nome = arquivo.next());
-			telefone = arquivo.next();
-			//novoContato.setTelefone(telefone = arquivo.next());
-			//agenda.insert(new Nodo<>(novoContato.getNome(), novoContato.getTelefone()));
-			agenda.insert(new Nodo<>(nome, telefone));
+			nomeTeste = nome.charAt(0);
+			if(nomeTeste == MARCADOR)
+				arquivo.next();
+			else
+			{
+				telefone = arquivo.next();
+				//novoContato.setTelefone(telefone = arquivo.next());
+				//agenda.insert(new Nodo<>(novoContato.getNome(), novoContato.getTelefone()));
+				agenda.insert(new Nodo<>(nome, telefone));
+			}
 		}
+		arquivo.close();
 	}
 
 	private static void buscaContato() 
@@ -119,37 +135,71 @@ public class Aplicacao {
 	public static void insereNoArquivo(String nome, String telefone) throws IOException
 	{
 		FileWriter arquivo = new FileWriter("agenda.txt", true);
-		BufferedWriter bw = new BufferedWriter(arquivo);
+		BufferedWriter agenda = new BufferedWriter(arquivo);
 
-		bw.write(nome + " " + telefone);
-		bw.newLine();
-		bw.flush();
-		bw.close();
+		agenda.write(nome + " " + telefone);
+		agenda.newLine();
+		agenda.flush();
+		agenda.close();
 	}
 	
 	public static void removeContato() throws Exception
 	{
 		out.println("Digite o nome para excluir");
 		nome = entrada.next();
-		agenda.remove(nome);	
-		atualizaArquivo();
+		marcaNomeRemovido(agenda.remove(nome));
 	}
 	
 	public static void atualizaArquivo() throws IOException
 	{
 		FileWriter arquivo = new FileWriter("agenda.txt");
 
-		BufferedWriter bw = new BufferedWriter(arquivo);
+		BufferedWriter agendaW = new BufferedWriter(arquivo);
 		Nodo<String> nodo = agenda.getHead();
 		
 		while (nodo != null)
 		{
-			String contato = (String)nodo.getChave() + " " + (String)nodo.getData();
-			bw.write(contato);
-			bw.newLine();
+			String contato = nodo.getChave() + " " + nodo.getData();
+			agendaW.write(contato);
+			agendaW.newLine();
 			nodo = nodo.getNext();
 		}
-		bw.flush();
-		bw.close();
+		agendaW.flush();
+		agendaW.close();
+	}
+	
+	public static void marcaNomeRemovido(Nodo<String> nodo) throws IOException{
+		
+		BufferedWriter tmp = new BufferedWriter(new FileWriter("tmp.txt"));
+		BufferedReader agendaLeitura = new BufferedReader(new FileReader("agenda.txt"));
+      
+		String linha;
+        String contato = nodo.getChave() + " " + nodo.getData();
+        
+        out.println("Nodo de entrada: "+ nodo);
+        
+       	while ((linha = agendaLeitura.readLine()) != null)
+       	{
+       		//out.println("Fora do if Linha: "+linha);
+        	if (linha.contains(contato))
+        	{
+        		//out.println("Dentro do teste - Linha: "+linha+"Contato: "+contato);
+        		linha = MARCADOR + contato;
+        	}
+        	
+        	
+        	tmp.write(linha);
+        	tmp.newLine();
+        }
+       	
+        tmp.flush();
+        tmp.close();
+        agendaLeitura.close();
+                
+        //0FileWriter agenda = new FileWriter("agenda.txt");
+        
+        new File("agenda.txt").delete();
+        new File("tmp.txt").renameTo(new File("agenda.txt"));
+        
 	}
 }

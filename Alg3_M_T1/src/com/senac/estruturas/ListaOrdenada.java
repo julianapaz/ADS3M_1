@@ -69,25 +69,30 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	 * lista.print(); }
 	 */
 
-	public void remove(T chave) {
+	public Nodo<T> remove(T chave) {
 		Nodo<T> nodo = getHead();
-		Nodo anterior, prox;
+		Nodo<T> anterior=null, prox=null;
 
+		//se o nodo a ser movido for o primeiro
 		if (chave.equals(getHead().getChave()))
-				setHead(getHead().getNext());
+			//o head recebe o proximo nodo	
+			setHead(getHead().getNext());
 		else
 		{
+			//enquanto a chave do proximo do nodo atual nao for a chave de procura
 			while (!nodo.getNext().getChave().equals(chave))
+				//nodo atual recebe o proximo
 				nodo = nodo.getNext();
 			
+			//se o nodo foi encontrado
 			if (nodo != null)
 			{
 				anterior = nodo;
 				prox = nodo.getNext();
 				anterior.setNext(prox.getNext());
-			}
+			}			
 		}
-
+		return prox;
 	}
 
 	public Nodo<T> findInicial(char letra)
