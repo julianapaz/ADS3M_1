@@ -180,7 +180,6 @@ public class Aplicacao {
 	
 	/** Metodo que solicita o nome a ser excluido da lista, realiza a chamada de metodo que exclui o nome
 	 * da lista e chama o metodo marcaNomeRemovido referente ao arquivo txt
-	 * 
 	 * @throws Exception
 	 */
 	
@@ -195,7 +194,7 @@ public class Aplicacao {
 	 *  A lista era escrita no arquivo, o arquivo permanecia
 	 * 	com os nomes ordenados exatamento como ordenados na lista
 	 * @throws IOException
-	 * @Deprecated utilizado ate implementar o metodo que apenas insere um marcado no contato excluido da lista
+	 * @deprecated utilizado ate implementar o metodo que apenas insere um marcado no contato excluido da lista
 	 */	
 	public static void atualizaArquivo() throws IOException
 	{

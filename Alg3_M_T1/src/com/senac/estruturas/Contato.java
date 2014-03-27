@@ -1,5 +1,9 @@
 package com.senac.estruturas;
-
+/** Classe que seria utilizada para realizar validacao
+ * 	
+ * @deprecated durante o desenvolvimento do projeto notou-se desnecessario validacao
+ * validacao nao implementada 
+ */
 public class Contato {
 	
 	private String nome;
@@ -29,8 +33,6 @@ public class Contato {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
-	
 	public String toString() {
 		String res = "Nome " + nome + " Telefone " + telefone;
 		return res;
