@@ -222,7 +222,7 @@ public class Aplicacao {
 		String linha;
         String contato = nodo.getChave() + " " + nodo.getData();
         
-        out.println("Nodo de entrada: "+ nodo);
+        //out.println("Nodo de entrada: "+ nodo);
         
        	while ((linha = agendaLeitura.readLine()) != null)
        	{
