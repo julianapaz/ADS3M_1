@@ -22,6 +22,12 @@ public class Aplicacao {
 	private static String nome, telefone;
 	private static Scanner entrada = new Scanner(System.in);
 
+	/** Metodo principal 
+	 * 
+	 * @param args
+	 * @throws Exception
+	 */
+	
 	public static void main(String[] args) throws Exception 
 	{
 		FileInputStream arquivo = new FileInputStream("agenda.txt");
@@ -49,12 +55,10 @@ public class Aplicacao {
 					break;
 					
 				case 3:
-					//buscaBinaria();
-				case 4:
 					removeContato();
 					break;
 
-				case 5:
+				case 4:
 					agenda.print();
 					break;
 
@@ -92,8 +96,8 @@ public class Aplicacao {
 		arquivo.close();
 	}
 
-	/** Metodo que mostra o primeiro nome encontado com a letra digitada
-	 * 
+	/** Metodo que passa como paramentro a letra para busca no metodo findiInicial
+	 *  Realiza chamada do metodo nageva 
 	 */
 	
 	private static void buscaContato() 
@@ -110,10 +114,10 @@ public class Aplicacao {
 	}
 	
 	/** Metodo que mostra opcoes de navegao na agenda apos realizar a busca
+	 *  Realiza chamadas de metodos avanca e retorna
 	 * 
-	 * @param nomeAtual
-	 */
-	
+	 * @param nomeAtual - 
+	 */	
 	private static void navega(Nodo<String> nomeAtual)
 	{
 		int op = -1;
@@ -135,7 +139,7 @@ public class Aplicacao {
 				out.println(nomeAtual);
 			}
 		}
-}
+	}
 
 	/** Metodo que insere um novo contato na lista e chama o metodo que insere no arquivo
 	 * 
@@ -189,10 +193,9 @@ public class Aplicacao {
 	
 	/** Metodo utilizado apos a exclusao de um contato da lista
 	 *  A lista era escrita no arquivo, o arquivo permanecia
-	 *  com os nomes ordenados examento como locados na lista
+	 * 	com os nomes ordenados exatamento como ordenados na lista
 	 * @throws IOException
-	 * @Deprecated utilizado ate implementar o metodo que apenas marca o contato que foi excluido
-	 *  sem apagar do arquivo
+	 * @Deprecated utilizado ate implementar o metodo que apenas insere um marcado no contato excluido da lista
 	 */	
 	public static void atualizaArquivo() throws IOException
 	{
@@ -213,13 +216,11 @@ public class Aplicacao {
 		
 	}
 	
-	/** Metodo que marca o contato que foi excluida da lista
-	 * 	eh inserido um marcado no contato, quando o arquivo for carregado para lista
-	 * 	o contato não seja inserido, permanencendo com um marcado de excluido
-	 * 	 
-	 * @param nodo - o contato que foi excluido da lista, o metodo percorre o arquivo linha por linha 
-	 * 	comparando o nome excluido se eh a linha lida, se for, eh inserido um marcador e escrito em um arquivo
-	 * 
+	/** Metodo que marca o contato que foi excluido da lista
+	 *  Metodo percorre linha por linha do arquivo comparando o contato excluido da lista
+	 *  Um marcado eh inserido no contato 
+	 *
+	 * @param nodo - o contato que foi excluido da lista, o metodo percorre o arquivo linha por linha
 	 * @throws IOException
 	 */
 	public static void marcaNomeRemovido(Nodo<String> nodo) throws IOException{

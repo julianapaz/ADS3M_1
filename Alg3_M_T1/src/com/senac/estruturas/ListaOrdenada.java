@@ -68,8 +68,13 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	 * 
 	 * lista.print(); }
 	 */
-
+/** Metodo que percorre a lista comparando a chave 
+ * 	Realiza teste se a chave esta no head ou 
+ * 	@param chave
+ *  @return o nodo que possuia a chave, o nodo removido
+ */
 	public Nodo<T> remove(T chave) {
+	
 		Nodo<T> nodo = getHead();
 		Nodo<T> anterior=null, prox=null;
 		Nodo<T> nodoRemovido=null;
@@ -101,6 +106,10 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 		return nodoRemovido;
 	}
 
+	/** Metodo que retorna o primeiro nodo encontrado que possue a letra inicial igual a da chave
+	 * @param letra
+	 * @return
+	 */
 	public Nodo<T> findInicial(char letra)
 	{
 		Nodo<T> nodo = getHead();
@@ -117,6 +126,11 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 		return nodo;
 	}
 
+	/** Metodo que avanca para o proximo nodo
+	 * 
+	 * @param atual
+	 * @return
+	 */
 	public Nodo<T> avanca(Nodo<T> atual) {
 		// se o nodo atual é o fim, retorna ele mesmo
 		if (atual.equals(getTail()))
@@ -125,10 +139,15 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 		else
 			return atual.getNext();
 	}
-
+/**	Metodo que percorre a lista utilizando getNext() para realizar a comparacao 
+ * 	sem perder o atual para retornar como o anterior   
+ *	@param atual
+ * 	@return nodo - o nodo anterior do atual
+ */
 	public Nodo<T> retorna(Nodo<T> atual) {
 		Nodo<T> nodo = getHead();
 		
+		//se o nodo atual eh o head avanca para o final
 		if (atual.equals(getHead()))
 			nodo = getTail();
 		
@@ -137,6 +156,7 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 			//enquanto nao for o ultimo
 			while (nodo.getNext() != null) //uso equals ou !=
 			{
+				//se o atual eh o proximo
 				if (atual.equals(nodo.getNext()))
 					break;
 				else
