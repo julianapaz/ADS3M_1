@@ -36,7 +36,7 @@ public class Nodo<T extends Comparable<T>> implements Comparable<Nodo<T>> {
  		return chave;
  	}
  	
- 	public void setChave(){
+ 	public void setChave(T chave){
  		this.chave = chave;
  	}
 

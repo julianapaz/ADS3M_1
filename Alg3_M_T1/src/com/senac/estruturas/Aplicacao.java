@@ -27,6 +27,7 @@ public class Aplicacao {
 		
 		int opcao = -1;
 		
+		
 		while (opcao != 0)
 		{
 			out.print("AGENDA \nDigite sua opcao \n" + "1-Cadastrar\n"
@@ -59,6 +60,9 @@ public class Aplicacao {
 		}
 		
 	}
+	/** metodo que correga o arquivo txt para a lista, lendo contato por contato
+	
+	*@param recebe um arquivo txt como scanner*/
 
 	private static void carregaAgenda(Scanner arquivo)
 	{
@@ -82,6 +86,10 @@ public class Aplicacao {
 		arquivo.close();
 	}
 
+	/** Metodo que mostra o primeiro nome encontado com a letra digitada
+	 * 
+	 */
+	
 	private static void buscaContato() 
 	{
 		String letra = null;
@@ -94,6 +102,11 @@ public class Aplicacao {
 		
 		navega(agenda.findInicial(letra.charAt(0)));
 	}
+	
+	/** Metodo que mostra opcoes de navegao na agenda apos realizar a busca
+	 * 
+	 * @param nomeAtual
+	 */
 	
 	private static void navega(Nodo<String> nomeAtual)
 	{
@@ -118,6 +131,11 @@ public class Aplicacao {
 		}
 }
 
+	/** Metodo que insere um novo contato na lista e chama o metodo que insere no arquivo
+	 * 
+	 * @throws IOException
+	 */
+	
 	private static void cadatraNovoContato() throws IOException 
 	{
 		out.println("Digite o nome:");
@@ -132,6 +150,13 @@ public class Aplicacao {
 
 	}
 	
+	/** Metodo que insere um novo contato cadastrado na lista 
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @throws IOException
+	 */
+	
 	public static void insereNoArquivo(String nome, String telefone) throws IOException
 	{
 		FileWriter arquivo = new FileWriter("agenda.txt", true);
@@ -143,6 +168,12 @@ public class Aplicacao {
 		agenda.close();
 	}
 	
+	/** Metodo que solicita o nome a ser excluido da lista, realiza a chamada de metodo que exclui o nome
+	 * da lista e chama o metodo marcaNomeRemovido referente ao arquivo txt
+	 * 
+	 * @throws Exception
+	 */
+	
 	public static void removeContato() throws Exception
 	{
 		out.println("Digite o nome para excluir");
@@ -150,6 +181,13 @@ public class Aplicacao {
 		marcaNomeRemovido(agenda.remove(nome));
 	}
 	
+	/** Metodo utilizado apos a exclusao de um contato da lista
+	 *  A lista era escrita no arquivo, o arquivo permanecia
+	 *  com os nomes ordenados examento como locados na lista
+	 * @throws IOException
+	 * @Deprecated utilizado ate implementar o metodo que apenas marca o contato que foi excluido
+	 *  sem apagar do arquivo
+	 */	
 	public static void atualizaArquivo() throws IOException
 	{
 		FileWriter arquivo = new FileWriter("agenda.txt");
@@ -167,7 +205,15 @@ public class Aplicacao {
 		agendaW.flush();
 		agendaW.close();
 	}
-	
+	/** Metodo que marca o contato que foi excluida da lista
+	 * 	eh inserido um marcado no contato, quando o arquivo for carregado para lista
+	 * 	o contato não seja inserido, permanencendo com um marcado de excluido
+	 * 	 
+	 * @param nodo - o contato que foi excluido da lista, o metodo percorre o arquivo linha por linha 
+	 * 	comparando o nome excluido se eh a linha lida, se for, eh inserido um marcador e escrito em um arquivo
+	 * 
+	 * @throws IOException
+	 */
 	public static void marcaNomeRemovido(Nodo<String> nodo) throws IOException{
 		
 		BufferedWriter tmp = new BufferedWriter(new FileWriter("tmp.txt"));
@@ -196,8 +242,6 @@ public class Aplicacao {
         tmp.close();
         agendaLeitura.close();
                 
-        //0FileWriter agenda = new FileWriter("agenda.txt");
-        
         new File("agenda.txt").delete();
         new File("tmp.txt").renameTo(new File("agenda.txt"));
         
