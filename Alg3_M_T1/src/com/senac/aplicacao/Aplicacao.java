@@ -207,6 +207,7 @@ public class Aplicacao {
 		}
 		agendaW.flush();
 		agendaW.close();
+		
 	}
 	/** Metodo que marca o contato que foi excluida da lista
 	 * 	eh inserido um marcado no contato, quando o arquivo for carregado para lista

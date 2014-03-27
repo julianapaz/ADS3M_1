@@ -135,7 +135,7 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 		else
 		{
 			//enquanto nao for o ultimo
-			while (!nodo.getNext().equals(null)) //uso equals ou !=
+			while (nodo.getNext() != null) //uso equals ou !=
 			{
 				if (atual.equals(nodo.getNext()))
 					break;
