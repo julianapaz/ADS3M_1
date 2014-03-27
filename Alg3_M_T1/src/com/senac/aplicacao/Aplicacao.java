@@ -19,8 +19,8 @@ public class Aplicacao {
 	private static ListaOrdenada<String> agenda = new ListaOrdenada<String>();
 	private static final char MARCADOR = '*';
 	//private static Contato novoContato = new Contato();
-	protected static String nome, telefone;
-	protected static Scanner entrada = new Scanner(System.in);
+	private static String nome, telefone;
+	private static Scanner entrada = new Scanner(System.in);
 
 	public static void main(String[] args) throws Exception 
 	{
@@ -209,6 +209,7 @@ public class Aplicacao {
 		agendaW.close();
 		
 	}
+	
 	/** Metodo que marca o contato que foi excluida da lista
 	 * 	eh inserido um marcado no contato, quando o arquivo for carregado para lista
 	 * 	o contato não seja inserido, permanencendo com um marcado de excluido
