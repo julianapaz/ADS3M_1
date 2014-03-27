@@ -1,4 +1,4 @@
-package com.senac.estruturas;
+package com.senac.aplicacao;
 
 import static java.lang.System.out;
 
@@ -10,6 +10,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+import com.senac.estruturas.ListaOrdenada;
+import com.senac.estruturas.Nodo;
 
 public class Aplicacao {
 
@@ -60,7 +63,7 @@ public class Aplicacao {
 		}
 		
 	}
-	/** metodo que correga o arquivo txt para a lista, lendo contato por contato
+	/** Metodo que correga o arquivo txt para a lista, lendo contato por contato
 	
 	*@param recebe um arquivo txt como scanner*/
 

@@ -104,7 +104,6 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	public Nodo<T> findInicial(char letra)
 	{
 		Nodo<T> nodo = getHead();
-		Nodo<T> anterior = null;
 		String nome;
 		
 		do {
