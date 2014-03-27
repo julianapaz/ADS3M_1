@@ -1,8 +1,6 @@
 package com.senac.estruturas;
-/** Classe que seria utilizada para realizar validacao
- * 	
- * @deprecated durante o desenvolvimento do projeto notou-se desnecessario validacao
- * validacao nao implementada 
+/** Classe que seria utilizada para realizar validacao(que nao foi implementada)
+ * 	@deprecated durante o desenvolvimento do projeto notou-se desnecessario validacao
  */
 public class Contato {
 	
