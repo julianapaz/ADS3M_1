@@ -47,11 +47,14 @@ public class Aplicacao {
 				case 2:
 					buscaContato();
 					break;
+					
 				case 3:
+					//buscaBinaria();
+				case 4:
 					removeContato();
 					break;
 
-				case 4:
+				case 5:
 					agenda.print();
 					break;
 
