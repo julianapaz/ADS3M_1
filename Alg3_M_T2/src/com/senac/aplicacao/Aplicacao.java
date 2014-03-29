@@ -2,6 +2,8 @@ package com.senac.aplicacao;
 
 import static java.lang.System.out;
 
+import java.awt.Dimension;
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,7 +12,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
 import com.senac.estruturas.ListaOrdenada;
 import com.senac.estruturas.Nodo;
 
@@ -26,8 +27,7 @@ public class Aplicacao {
 	 * 
 	 * @param args
 	 * @throws Exception
-	 */
-	
+	 */	
 	public static void main(String[] args) throws Exception 
 	{
 		FileInputStream arquivo = new FileInputStream("agenda.txt");
@@ -35,7 +35,7 @@ public class Aplicacao {
 		arquivo.close();
 		
 		int opcao = -1;
-		
+		buscaBinaria();
 		
 		while (opcao != 0)
 		{
@@ -70,10 +70,10 @@ public class Aplicacao {
 		}
 		
 	}
+	
 	/** Metodo que correga o arquivo txt para a lista, lendo contato por contato
 	
 	*@param recebe um arquivo txt como scanner*/
-
 	private static void carregaAgenda(Scanner arquivo)
 	{
 		char nomeTeste;
@@ -99,7 +99,6 @@ public class Aplicacao {
 	/** Metodo que passa como paramentro a letra para busca no metodo findiInicial
 	 *  Realiza chamada do metodo nageva 
 	 */
-	
 	private static void buscaContato() 
 	{
 		String letra = null;
@@ -145,7 +144,6 @@ public class Aplicacao {
 	 * 
 	 * @throws IOException
 	 */
-	
 	private static void cadatraNovoContato() throws IOException 
 	{
 		out.println("Digite o nome:");
@@ -165,8 +163,7 @@ public class Aplicacao {
 	 * @param nome
 	 * @param telefone
 	 * @throws IOException
-	 */
-	
+	 */	
 	public static void insereNoArquivo(String nome, String telefone) throws IOException
 	{
 		FileWriter arquivo = new FileWriter("agenda.txt", true);
@@ -181,8 +178,7 @@ public class Aplicacao {
 	/** Metodo que solicita o nome a ser excluido da lista, realiza a chamada de metodo que exclui o nome
 	 * da lista e chama o metodo marcaNomeRemovido referente ao arquivo txt
 	 * @throws Exception
-	 */
-	
+	 */	
 	public static void removeContato() throws Exception
 	{
 		out.println("Digite o nome para excluir");
@@ -254,4 +250,76 @@ public class Aplicacao {
         new File("tmp.txt").renameTo(new File("agenda.txt"));
         
 	}
+
+	/** Metodo que realiza busca binaria
+	 * 
+	 */
+	public static void buscaBinaria()
+	{
+		List lista = new List();
+		int indice = 0;
+				
+		Nodo<String> nodo = agenda.getHead();
+		
+		while (nodo != null)
+		{
+			lista.add(nodo.getChave(),indice);
+			out.println("Nodo: " + nodo.getChave() + " " + indice);
+			indice ++;
+			nodo = nodo.getNext();
+		}
+		
+		
+		
+		int tamanho = lista.countItems();
+		out.println(tamanho);
+		
+		out.println("Digite o nome para busca: ");
+		nome = entrada.next();
+		int meio = tamanho/2;
+		int indiceAtual = meio;
+		int nrElementos = 0;
+		int nrComparacoes = 1;
+		
+		while (indiceAtual!=0 && indiceAtual!=(tamanho-1))
+		{
+				
+				int comp = nome.compareTo(lista.getItem(indiceAtual));
+				out.println("Resultado comp: "+comp);
+								
+				if(comp==0)
+				{	
+					out.println("Achou " + lista.getItem(indiceAtual) + "\n" + nome);
+					
+					break;
+				}
+				//nao funciona quando o elemento esta na metade menor e eh maio que o elemento lido
+				//alterar codigo
+				if(comp>0)
+				{
+					nrElementos = (tamanho - indiceAtual)/2;
+					indiceAtual = indiceAtual + nrElementos;
+					nrComparacoes++;
+				}
+			
+				if(comp<0)
+				{
+					indiceAtual = indiceAtual/2;
+					nrComparacoes ++;
+					
+				}
+				
+					
+		}
+		
+		out.println("Numero de comparacoes: " + nrComparacoes);
+		
+		/*if( lista.getItem(indiceAtual).contains(nome) )
+			out.print(lista.getItem(indiceAtual));
+		else
+			out.println("Nome nao encontrado!");*/
+				
+			
+	}
+
 }
