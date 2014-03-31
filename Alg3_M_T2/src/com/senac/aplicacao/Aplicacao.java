@@ -270,8 +270,7 @@ public class Aplicacao {
 			indice ++;
 			//vai para o proximo nome
 			nodo = nodo.getNext();
-		}
-		
+		}		
 		
 		//variavel que recebe a quantidade de nomes que a lista contem
 		int tamanho = lista.countItems();
@@ -296,9 +295,10 @@ public class Aplicacao {
 				
 			//recebe o resultado da comparacao do nome da busca com o nome do meio da lista	
 			int comp = nome.compareTo(lista.getItem(meio));
-				//out.println("Resultado comp: "+comp);
+			//out.println("Resultado comp: "+comp);
 								
-			//se for igual, achou o nome 	
+			//se for igual, achou o nome
+			//imprime na tela e sai do laco
 			if(comp==0)
 			{	
 				out.println("Achou " + lista.getItem(meio) + "\n" + nome);
@@ -323,13 +323,8 @@ public class Aplicacao {
 		
 		}
 		
-		out.println("Numero de comparacoes: " + nrComparacoes);
-		
-		/*if( lista.getItem(indiceAtual).contains(nome) )
-			out.print(lista.getItem(indiceAtual));
-		else
-			out.println("Nome nao encontrado!");*/
-				
+		//imprime na tela o numero de comparacoes realizadas
+		out.println("Numero de comparacoes: " + nrComparacoes);	
 			
 	}
 
