@@ -55,10 +55,13 @@ public class Aplicacao {
 					break;
 					
 				case 3:
+					buscaBinaria();
+				
+				case 4:
 					removeContato();
 					break;
 
-				case 4:
+				case 5:
 					agenda.print();
 					break;
 
@@ -299,14 +302,14 @@ public class Aplicacao {
 								
 			//se for igual, achou o nome
 			//imprime na tela e sai do laco
-			if(comp==0)
+			if (comp==0)
 			{	
 				out.println("Achou " + lista.getItem(meio) + "\n" + nome);
 				break;
 			}
 			
 			//se for maior o nome esta na outra metade maior
-			if(comp>0)
+			if (comp>0)
 			{
 				inicio = meio+1;
 				meio = (inicio+fim)/2;
@@ -314,15 +317,13 @@ public class Aplicacao {
 			}
 			
 			//se for menor o nome esta na outra metade menor
-			if(comp<0)
+			if (comp<0)
 			{
 				fim = meio-1;
 				meio = (inicio + fim)/2;
 				nrComparacoes++;					
-			}
-		
-		}
-		
+			}		
+		}		
 		//imprime na tela o numero de comparacoes realizadas
 		out.println("Numero de comparacoes: " + nrComparacoes);	
 			
