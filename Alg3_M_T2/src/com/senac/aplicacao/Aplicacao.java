@@ -252,7 +252,7 @@ public class Aplicacao {
 	}
 
 	/** Metodo que realiza busca binaria
-	 * 
+	 * Carrega a lista ordenada em um list com indice
 	 */
 	public static void buscaBinaria()
 	{
@@ -263,52 +263,64 @@ public class Aplicacao {
 		
 		while (nodo != null)
 		{
+			//insere o contato na lista com um indice associado
 			lista.add(nodo.getChave(),indice);
 			out.println("Nodo: " + nodo.getChave() + " " + indice);
+			//incrementa o indice
 			indice ++;
+			//vai para o proximo nome
 			nodo = nodo.getNext();
 		}
 		
 		
-		
+		//variavel que recebe a quantidade de nomes que a lista contem
 		int tamanho = lista.countItems();
-		out.println(tamanho);
+		//out.println(tamanho);
 		
+		//entrada do nome para busca
 		out.println("Digite o nome para busca: ");
 		nome = entrada.next();
+	
+		//inicializa o meio da lista
 		int meio = (tamanho-1)/2;
+		
+		//inicializa o inicio e o fim da lista
 		int inicio=0, fim=tamanho-1;
 
+		//inicializa o contador de comparacoes
 		int nrComparacoes = 1;
 		
+		//enquanto o meio nao for o inicio e o meio nao for o fim
 		while (meio!=inicio && meio!=fim)
 		{
 				
-				int comp = nome.compareTo(lista.getItem(meio));
-				out.println("Resultado comp: "+comp);
+			//recebe o resultado da comparacao do nome da busca com o nome do meio da lista	
+			int comp = nome.compareTo(lista.getItem(meio));
+				//out.println("Resultado comp: "+comp);
 								
-				if(comp==0)
-				{	
-					out.println("Achou " + lista.getItem(meio) + "\n" + nome);
-					break;
-				}
-				//nao funciona quando o elemento esta na metade menor e eh maio que o elemento lido
-				//alterar codigo
-				if(comp>0)
-				{
-					inicio = meio+1;
-					meio = (inicio+fim)/2;
-					nrComparacoes++;
-				}
+			//se for igual, achou o nome 	
+			if(comp==0)
+			{	
+				out.println("Achou " + lista.getItem(meio) + "\n" + nome);
+				break;
+			}
 			
-				if(comp<0)
-				{
-					fim = meio-1;
-					meio = (inicio + fim)/2;
-					nrComparacoes++;					
-				}
-				
-					
+			//se for maior o nome esta na outra metade maior
+			if(comp>0)
+			{
+				inicio = meio+1;
+				meio = (inicio+fim)/2;
+				nrComparacoes++;
+			}
+			
+			//se for menor o nome esta na outra metade menor
+			if(comp<0)
+			{
+				fim = meio-1;
+				meio = (inicio + fim)/2;
+				nrComparacoes++;					
+			}
+		
 		}
 		
 		out.println("Numero de comparacoes: " + nrComparacoes);
