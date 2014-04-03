@@ -7,11 +7,11 @@ public class Jogo {
 		PortaAvioes portaAvioes = new PortaAvioes();
 		Jogador jogador = new Jogador("Juliana", 15);
 		
-		while(!jogador.perdeu() && !portaAvioes.destruido())
-		{
+		//while(!jogador.perdeu() && !portaAvioes.destruido())
+		//{
 			tabuleiro.print();
-			tabuleiro.setPosicao(1, 1, 'o');
-			tabuleiro.print();
+			//tabuleiro.setPosicao(1, 1, 'o');
+			//tabuleiro.print();
 			//sorteia posicao navio
 			//verifica espaco disponivel para tamanho do navio
 			//insere na matriz
@@ -23,11 +23,11 @@ public class Jogo {
 					//navio perde um pedaco
 			
 			
+			/*jogador.perdePonto();
 			jogador.perdePonto();
 			jogador.perdePonto();
 			jogador.perdePonto();
-			jogador.perdePonto();
-			jogador.perdePonto();
-		}
+			jogador.perdePonto();*/
+		//}
 	}
 }

@@ -14,14 +14,14 @@ public class Tabuleiro {
 		public Tabuleiro()
 		{
 			
-			int i,j;
+			/*int i,j;
 			for(i=0;i<10;i++)
 			{
 				for(j=0;j<10;j++)
 				{
 					posicao[i][j]='.';
 				}
-			}
+			}*/
 					
 		}
 		
@@ -33,16 +33,18 @@ public class Tabuleiro {
 			out.print(" ");
 			
 			for(coluna=1;coluna<=10;coluna++)
-				out.print(coluna + " ");
+				//out.print("\t" + coluna);
+				out.print(" " + coluna + " ");
 			
 			out.println();
 			for(i=0;i<10;i++)
 			{
-				out.print(linha + " ");
+				out.print(linha);
 				for(j=0;j<10;j++)
 				{
 					
-					out.print(posicao[i][j] + " ");
+					//out.print("\t"+ ". ");
+					out.print(" . ");
 				}
 				out.println();
 				linha++;
