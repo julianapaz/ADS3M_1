@@ -61,6 +61,13 @@ public class ArvoreNodoInt {
 		return r;
 	}
 	
+	/**
+	 * Metodo que imprime os nodos da arvore do forma prefixa
+	 * avalia o nodo da raiz
+	 * avalia o filho da esquerda
+	 * avalia o filho da direita
+	 * @param no
+	 */
 	
 	public void printPrefixa(NodoInt no)
 	{	
@@ -72,6 +79,15 @@ public class ArvoreNodoInt {
 			
 		}
 	}
+	
+	/**
+	 * Metodo que imprime os nodos da arvore do forma infixa
+	 * Imprime os dados de forma ordenada
+	 * avalia o filho da esquerda
+	 * avalia o nodo da raiz 
+	 * avalia o filho da direita
+	 * @param no
+	 */
 
 	public void printInfixa(NodoInt no)
 	{
