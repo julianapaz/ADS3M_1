@@ -61,7 +61,7 @@ public class NodoInt
 	}*/
 	
 	
-	public NodoInt insere(NodoInt no, int v)
+	/*public NodoInt insere(NodoInt no, int v)
 	{
 		if(no==null)
 		{
@@ -86,18 +86,10 @@ public class NodoInt
 				no.setDireita(insere(no.getDireita(), v));
 		}
 		return no;
-	}
+	}*/
 
 
 	
-	public void print(NodoInt no)
-	{
-		if(no != null)
-		{
-			no.print(no.getDireita());
-			System.out.println(no.getValor());
-			no.print(no.getEsquerda());
-		}
-	}
-
+	
+	
 }

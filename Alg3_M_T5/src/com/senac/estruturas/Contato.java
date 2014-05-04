@@ -1,5 +1,5 @@
 package com.senac.estruturas;
-public class Contato {
+public class Contato<T extends Comparable<T>> implements Comparable<Contato<T>>{
 	
 	private String nome;
 	private String telefone;
@@ -28,9 +28,19 @@ public class Contato {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+	
+	
+	@Override
+	public int compareTo(Contato<T> c) {
+		return nome.compareTo(c.getNome());
+	}
+		
+	
 	public String toString() {
 		String res = "Nome " + nome + " Telefone " + telefone;
 		return res;
 	}
+
+	
 
 }
