@@ -114,6 +114,85 @@ public int compareTo(Nodo o) {
 		}
 		return nodo;
 	}
+	
+	public Nodo remove(Nodo nodo, String chave)
+	{
+		
+		if( nodo == null )
+			System.out.println("O dado nao existe na arvore");
+		else
+		{
+			int cmp = chave.compareTo(nodo.getChave());
+			//System.out.println("Comparacao: " + nodo.getChave() + " com " + chave + ": " + cmp);
+			
+			
+			if ( cmp < 0)
+				remove(nodo.getEsquerda(), chave);
+		
+			else if ( cmp > 0)
+				remove(nodo.getDireita(),chave);
+			
+			
+			
+			else
+			{
+				//se nodo nao tem filhos - folha
+				if(nodo.getEsquerda()== null && nodo.getDireita() == null)
+				{
+					//nao apaga?????
+					nodo = null;
+					System.out.println("Nodo null");
+				}
+				//se nodo tem um filho a direita
+				else if(nodo.getEsquerda() == null)
+				{
+					nodo = nodo.getDireita();
+					System.out.println("Filho a direita vira raiz");
+				}
+				
+				//se nodo tem um filho a esquerda
+				else if( nodo.getDireita() == null )
+				{
+					nodo = nodo.getEsquerda();
+					System.out.println("Filho a esquerda vira raiz");
+				}
+				
+				else
+				{
+					Nodo maiorFolha = maiorFolhaDireita(nodo);
+					System.out.println("Maior filho " + maiorFolha);
+					nodo.setChave(maiorFolha.getChave());
+					nodo.setDado(maiorFolha.getDado());
+					
+					//apaga a maior folha
+					maiorFolha = null;
+					
+				}
+				
+				
+				
+			}
+		}
+		return nodo;
+	}
+	
+	
+	public Nodo maiorFolhaDireita(Nodo nodo)
+	{
+		
+		while(nodo.getDireita() != null )
+			nodo = nodo.getDireita();
+		
+		return nodo;
+	}
+
+
+
+	
+	
+	
+	
+	
 
 	
 	public static void main(String[] args) {
