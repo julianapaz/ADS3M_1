@@ -84,7 +84,37 @@ public int compareTo(Nodo o) {
 	
 	
 	
+	/**
+	 * Metodo que busca um contato pela chave
+	 * @param nodo
+	 * @param dado
+	 * @return
+	 */
 	
+	public Nodo busca(Nodo nodo, String dado)
+	{
+		
+		if ( nodo == null)
+			System.out.println("Dado nao existe na arvore");
+		else
+		{
+			//System.out.println("Nodo atual: " + nodo);
+			//System.out.println("Chave: " + nodo.getChave());
+			int cmp = dado.compareTo(nodo.getChave());
+			System.out.println("CMp: "+cmp);
+			
+			if( cmp == 0 )
+				System.out.println(nodo);
+			
+			else if( cmp < 0 )
+				busca(nodo.getEsquerda(), dado);
+			else
+				busca(nodo.getDireita(),dado);
+					
+		}
+		return nodo;
+	}
+
 	
 	public static void main(String[] args) {
 		
