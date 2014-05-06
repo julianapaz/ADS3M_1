@@ -1,9 +1,10 @@
 package com.senac.estruturas;
 
-public class Nodo<T extends Comparable<T>> implements Comparable<Contato<T>>
+public class Nodo
 {
 
-	private Contato contato;
+	private String dado;
+	private String chave;
 	private Nodo esquerda;
 	private Nodo direita;
 	
@@ -11,21 +12,32 @@ public class Nodo<T extends Comparable<T>> implements Comparable<Contato<T>>
 	{
 	}
 	
-	public Nodo(Contato contato)
+	public Nodo(String chave, String dado)
 	{
-		this.contato = contato;
+		this.dado = dado;
+		this.chave = chave;
 		this.esquerda = null;
 		this.direita = null;
 	}
 	
-	public Contato getContato()
+	public String getDado()
 	{
-		return contato;
+		return dado;
 	}
 	
-	public void setContato(Contato c)
+	public void setDado(String dado)
 	{
-		contato = c;
+		this.dado = dado;
+	}
+	
+	public String getChave()
+	{
+		return chave;
+	}
+	
+	public void setChave(String chave)
+	{
+		this.chave = chave;
 	}
 	
 	public Nodo getDireita()
@@ -33,71 +45,35 @@ public class Nodo<T extends Comparable<T>> implements Comparable<Contato<T>>
 		return direita;
 	}
 	
-	public void setDireita(Nodo novo)
+	public void setDireita(Nodo direita)
 	{
-		this.direita = novo;
+		this.direita = direita;
 	}
  	
- 	
-	
 	public Nodo getEsquerda()
 	{
 		return esquerda;
 	}
 	
-	public void setEsquerda(Nodo novo)
+	public void setEsquerda(Nodo esquerda)
 	{
-		this.esquerda = novo;
+		this.esquerda = esquerda;
 	}
-
-	
-	
-	
-	/*public String toString(){
-		String res = getContato()() + " "
-				+ getDado();
-		
-		return res;
-	}*/
-	
-/*	
-	public Nodo insere(Nodo no, Contato c)
-	{
-		if(no == null)
-		{
-			no.setContato(c);
-			no.setDireita(null);
-			no.setEsquerda(null);
-		}
-		else
-		{
-			int cmp = no.compareTo(c);
-				if(cmp < 0)
-				{
-					no.setDireita(insere(no, c));
-				}
-				else
-				{
-					no.setEsquerda(insere(no, c));
-				}
-		}
-		return no;
-	}*/
-
-	@Override
-	public int compareTo(Contato<T> o) {
-		
-		return getContato().getNome().compareTo(contato.getNome());
+//ver com prof - generics
+	public int compareTo(Nodo r) {
+		return chave.compareTo(r.getChave());
 	}
 	
-	public void print(Nodo no)
+	
+	public String toString(){
+		String str = getChave() + " " + getDado();
+		
+		return str;
+	}
+	
+	public int compareTo(String str)
 	{
-		if(no != null)
-		{
-			no.print(no.getDireita());
-			System.out.println(no.getContato());
-			no.print(no.getEsquerda());
-		}
+		return chave.compareTo(str);
 	}
 
 }
