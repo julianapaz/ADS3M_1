@@ -1,7 +1,5 @@
 package com.senac.aplicacao;
 
-import static java.lang.System.out;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -35,7 +33,7 @@ public class Aplicacao{
 		
 		while (opcao != 0)
 		{
-			out.print("AGENDA \nDigite sua opcao \n" + "1-Adicionar contato\n"
+			System.out.print("AGENDA \nDigite sua opcao \n" + "1-Adicionar contato\n"
 					+ "2-Buscar pelo nome\n" + "3-Remover contato\n" + "4-Exibir elementos\n"
 					+ "0-Sair\n");
 			opcao = entrada.nextInt();
@@ -69,7 +67,7 @@ public class Aplicacao{
 	
 	
 
-private static void cadatraNovoContato() throws IOException {
+	private static void cadatraNovoContato() throws IOException {
 		// TODO Auto-generated method stub
 		Contato<String> novo = new Contato<String>();
 		System.out.println("Digite o nome");
@@ -77,35 +75,35 @@ private static void cadatraNovoContato() throws IOException {
 		System.out.println("Digite o telefone: ");
 		novo.setTelefone(entrada.next());
 		
-		agenda.insere(agenda.getRaiz(), new Nodo<String>(novo.getNome(), novo.getTelefone()));
+		agenda.insere( agenda.getRaiz(), new Nodo<String>( novo.getNome(), novo.getTelefone()));
 		insereNoArquivo(novo);
+		System.out.println("Total de contatos: "+agenda.getTotalNodos());
+	//	System.out.println("Altura da arvore: "+agenda.getAltura());
 	}
 
-public static void insereNoArquivo(Contato<String> novo) throws IOException
-{
-	FileWriter arquivo = new FileWriter("agenda.txt", true);
-	BufferedWriter agenda = new BufferedWriter(arquivo);
+	public static void insereNoArquivo(Contato<String> novo) throws IOException
+	{
+		FileWriter arquivo = new FileWriter("agenda.txt", true);
+		BufferedWriter agenda = new BufferedWriter(arquivo);
 
-	agenda.write(novo.getNome() + " " + novo.getTelefone());
-	agenda.newLine();
-	agenda.flush();
-	agenda.close();
-}
+		agenda.write(novo.getNome() + " " + novo.getTelefone());
+		agenda.newLine();
+		agenda.flush();
+		agenda.close();
+	}
 	
 
 
-private static void buscaContato() {
-		// TODO Auto-generated method stub
+	private static void buscaContato()
+	{
 		String nome;
 		System.out.println("Digite o nome para busca: ");
 		nome = entrada.next();
-		agenda.busca(agenda.getRaiz(), nome, 0);
-		
-		
+		agenda.busca(agenda.getRaiz(), nome, 0);	
 	}
 
-private static void removeContato() throws IOException {
-		// TODO Auto-generated method stub
+	private static void removeContato() throws IOException 
+	{
 		String nome;
 		System.out.println("Digite o nome para remover");
 		nome = entrada.next();
@@ -115,53 +113,49 @@ private static void removeContato() throws IOException {
 	}
 
 
-public static void marcaNomeRemovido(Nodo<String> nodo) throws IOException{
+	public static void marcaNomeRemovido(Nodo<String> nodo) throws IOException
+	{
 	
-	BufferedWriter tmp = new BufferedWriter(new FileWriter("tmp.txt"));
-	BufferedReader agendaLeitura = new BufferedReader(new FileReader("agenda.txt"));
+		BufferedWriter tmp = new BufferedWriter(new FileWriter("tmp.txt"));
+		BufferedReader agendaLeitura = new BufferedReader(new FileReader("agenda.txt"));
   
-	String linha;
-    String contato = nodo.getChave() + " " + nodo.getDado();
-    
-    //out.println("Nodo de entrada: "+ nodo);
-    
-   	while ((linha = agendaLeitura.readLine()) != null)
-   	{
-   		//out.println("Fora do if Linha: "+linha);
-    	if (linha.contains(contato))
-    	{
-    		//out.println("Dentro do teste - Linha: "+linha+"Contato: "+contato);
-    		linha = MARCADOR + contato;
-    	}    	
-    	tmp.write(linha);
-    	tmp.newLine();
-    }
-   	
-    tmp.flush();
-    tmp.close();
-    agendaLeitura.close();
-            
-    new File("agenda.txt").delete();
-    new File("tmp.txt").renameTo(new File("agenda.txt"));
-}
+		String linha;
+		String contato = nodo.getChave() + " " + nodo.getDado();
+   
+		while ((linha = agendaLeitura.readLine()) != null)
+		{
 
-private static void OpcoesDeExibicaoDeElementos() {
-	// TODO Auto-generated method stub
-	int op = -1;
-	 while( op!= 0 )
-	 {
-		 System.out.println("1-Travessia Prefixa\n2-Travessia Infixa\n3-Travessia Posfixa" +
+			if (linha.contains(contato))
+				linha = MARCADOR + contato;
+			tmp.write(linha);
+			tmp.newLine();
+		}
+   	
+		tmp.flush();
+		tmp.close();
+		agendaLeitura.close();
+            
+		new File("agenda.txt").delete();
+		new File("tmp.txt").renameTo(new File("agenda.txt"));
+		}
+
+	private static void OpcoesDeExibicaoDeElementos() 
+	{
+		int op = -1;
+		while( op!= 0 )
+		{
+			System.out.println("1-Travessia Prefixa\n2-Travessia Infixa\n3-Travessia Posfixa" +
 		 		"\n4-Busca em Largura\n5-Busca em Profundidade\n0-VOLTAR");
-		 op = entrada.nextInt();
+			op = entrada.nextInt();
 		 
-		 if ( op == 1 )
-			 agenda.printPrefixa(agenda.getRaiz());
-		 else if ( op == 2 )
-			 agenda.printInfixa(agenda.getRaiz());
-		 else if ( op == 3 )
+			if ( op == 1 )
+				agenda.printPrefixa(agenda.getRaiz());
+			else if ( op == 2 )
+				agenda.printInfixa(agenda.getRaiz());
+			else if ( op == 3 )
 				 agenda.printTravessiaPosFixa(agenda.getRaiz());
-		 else
-			 System.out.println("OPCAO INVALIDA");
+			else
+				System.out.println("OPCAO INVALIDA");
 		 /******************
 		  * FAZER O RESTANTE
 		  */
@@ -181,23 +175,19 @@ private static void OpcoesDeExibicaoDeElementos() {
 		
 		while (arquivo.hasNext()) 
 		{	
-			//nome = arquivo.next();
 			novoContato.setNome(arquivo.next());
 			nomeTeste = novoContato.getNome().charAt(0);
 			if(nomeTeste == MARCADOR)
 				arquivo.next();
 			else
 			{
-				//telefone = arquivo.next();
 				novoContato.setTelefone(arquivo.next());
 				agenda.insere(agenda.getRaiz(),new Nodo<>(novoContato.getNome(), novoContato.getTelefone()));
 			}
 		}
 		arquivo.close();
-	}
-	
-	
-		
+		}
+			
 	}
 	
 
