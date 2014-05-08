@@ -1,18 +1,18 @@
 package com.senac.estruturas;
 
-public class Nodo
+public class Nodo<T extends Comparable<T>> implements Comparable<Nodo<T>> 
 {
 
-	private String dado;
-	private String chave;
-	private Nodo esquerda;
-	private Nodo direita;
+	private T dado;
+	private T chave;
+	private Nodo<T> esquerda;
+	private Nodo<T> direita;
 	
 	public Nodo()
 	{
 	}
 	
-	public Nodo(String chave, String dado)
+	public Nodo(T chave, T dado)
 	{
 		this.dado = dado;
 		this.chave = chave;
@@ -20,47 +20,47 @@ public class Nodo
 		this.direita = null;
 	}
 	
-	public String getDado()
+	public T getDado()
 	{
 		return dado;
 	}
 	
-	public void setDado(String dado)
+	public void setDado(T dado)
 	{
 		this.dado = dado;
 	}
 	
-	public String getChave()
+	public T getChave()
 	{
 		return chave;
 	}
 	
-	public void setChave(String chave)
+	public void setChave(T chave)
 	{
 		this.chave = chave;
 	}
 	
-	public Nodo getDireita()
+	public Nodo<T> getDireita()
 	{
 		return direita;
 	}
 	
-	public void setDireita(Nodo direita)
+	public void setDireita(Nodo<T> direita)
 	{
 		this.direita = direita;
 	}
  	
-	public Nodo getEsquerda()
+	public Nodo<T> getEsquerda()
 	{
 		return esquerda;
 	}
 	
-	public void setEsquerda(Nodo esquerda)
+	public void setEsquerda(Nodo<T> esquerda)
 	{
 		this.esquerda = esquerda;
 	}
 //ver com prof - generics
-	public int compareTo(Nodo r) {
+	public int compareTo(Nodo<T> r) {
 		return chave.compareTo(r.getChave());
 	}
 	
@@ -71,7 +71,7 @@ public class Nodo
 		return str;
 	}
 	
-	public int compareTo(String str)
+	public int compareTo(T str)
 	{
 		return chave.compareTo(str);
 	}
