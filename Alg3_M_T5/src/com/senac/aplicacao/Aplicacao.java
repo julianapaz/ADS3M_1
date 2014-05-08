@@ -149,11 +149,11 @@ public class Aplicacao{
 			op = entrada.nextInt();
 		 
 			if ( op == 1 )
-				agenda.printPrefixa(agenda.getRaiz());
+				agenda.travessiaPrefixa(agenda.getRaiz());
 			else if ( op == 2 )
-				agenda.printInfixa(agenda.getRaiz());
+				agenda.travessiaInfixa(agenda.getRaiz());
 			else if ( op == 3 )
-				 agenda.printTravessiaPosFixa(agenda.getRaiz());
+				 agenda.travessiaTravessiaPosFixa(agenda.getRaiz());
 			else
 				System.out.println("OPCAO INVALIDA");
 		 /******************
