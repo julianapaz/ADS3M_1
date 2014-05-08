@@ -3,14 +3,14 @@ package com.senac.estruturas;
 public class ArvoreBinaria<T extends Comparable<T>> 
 {
 	
-	private Nodo raiz;
+	private Nodo<T> raiz;
 	private int totalNodos;
 	private int altura;
 
 	
 	
 	
-	public ArvoreBinaria(Nodo raiz)
+	public ArvoreBinaria(Nodo<T> raiz)
 	{
 		this.raiz = raiz;
 		this.totalNodos = 1;
@@ -25,7 +25,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		totalNodos = 0;
 	}
 	
-	public Nodo getRaiz()
+	public Nodo<T> getRaiz()
 	{
 		return raiz;
 	}
@@ -49,13 +49,12 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	 * @param novo
 	 * @return nodo inserido
 	 */	
-	public Nodo insere(Nodo r, Nodo novo)
+	public Nodo<T> insere(Nodo<T> r, Nodo<T> novo)
 	{
 		
-		//chegou no final da arvore com uma raiz nula
+		
 		if( r==null )
-			///r = novo;
-			System.out.println("Nodo ja existe na arvore");	
+			raiz = novo;	
 		else
 		{
 			int cmp = novo.compareTo(r);
@@ -93,7 +92,9 @@ public class ArvoreBinaria<T extends Comparable<T>>
 				//senao chama o metodo insercao enviando a raiz da direita
 				else				
 					r.setDireita(insere(r.getDireita(),novo));
-			}			
+			}
+			else
+				System.out.println("Dado ja esta na arvore");
 				
 		}
 		
@@ -104,7 +105,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	/*
 	 * Nao sei usar compare
 	 */
-	public int compareTo(Nodo o) {
+	public int compareTo(Nodo<T> o) {
 		return raiz.compareTo(o);
 	}
 	
@@ -117,7 +118,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	 *  
 	 * @param nodoRaiz
 	 */
-	public void printInfixa(Nodo nodoRaiz)
+	public void printInfixa(Nodo<T> nodoRaiz)
 	{
 		if( nodoRaiz != null )
 		{
@@ -138,7 +139,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	 * 
 	 * @param nodoRaiz
 	 */
-	public void printPrefixa(Nodo nodoRaiz)
+	public void printPrefixa(Nodo<T> nodoRaiz)
 	{
 		if( nodoRaiz != null )
 		{
@@ -156,7 +157,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	 * raiz
 	 * @param nodoRaiz
 	 */
-	public void printTravessiaPosFixa(Nodo nodoRaiz)
+	public void printTravessiaPosFixa(Nodo<T> nodoRaiz)
 	{
 		if( nodoRaiz != null )
 		{			
@@ -174,7 +175,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	 * @param nrComparacoes
 	 */
 	
-	public void busca(Nodo nodoRaiz, String chave, int nrComparacoes)
+	public void busca(Nodo<T> nodoRaiz, T chave, int nrComparacoes)
 	{
 		/*
 		 * Quando ja percorreu toda arvore
@@ -233,7 +234,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	 */
 	
 	
-	public Nodo remove(Nodo r, String chave)
+	public Nodo<T> remove(Nodo<T> r, T chave)
 	{
 		
 		if(r == null)
@@ -241,8 +242,9 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		
 		else
 		{
-			int cmp = chave.compareTo(r.getChave());
 			
+			//int cmp = chave.compareTo(r.getChave());
+			int cmp = chave.compareTo(r.getChave());
 			//nao achou e esta na parte direita da arvore
 			//eh maior que a raiz
 			if ( cmp > 0)
@@ -271,7 +273,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 				{
 					System.out.println("Pai " + buscaPai(r));
 					System.out.println("Eh uma folha!");
-					Nodo pai = buscaPai(r);
+					Nodo<T> pai = buscaPai(r);
 					
 					//se o filho for da direita
 					if ( r.compareTo(pai) > 0 )
@@ -292,7 +294,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 				else if ( r.getDireita() == null)
 				{
 					
-					Nodo pai = buscaPai(r);
+					Nodo<T> pai = buscaPai(r);
 					
 					if ( r.compareTo(pai) > 0 )
 						pai.setDireita(r.getEsquerda());
@@ -309,7 +311,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 				else if ( r.getEsquerda() == null)
 				{
 					
-					Nodo pai = buscaPai(r);
+					Nodo<T> pai = buscaPai(r);
 					
 					if ( r.compareTo(pai) > 0 )
 						pai.setDireita(r.getDireita());
@@ -329,13 +331,13 @@ public class ArvoreBinaria<T extends Comparable<T>>
 					/*
 					 * Busca o menor filho a direita
 					 */
-					Nodo menorFolha = menorFolhaEsquerda(r.getDireita());
+					Nodo<T> menorFolha = menorFolhaEsquerda(r.getDireita());
 					
 					
 					/*
 					 * Busca o pai da menor folha
 					 */
-					Nodo pai = buscaPai(menorFolha);
+					Nodo<T> pai = buscaPai(menorFolha);
 					
 					/*
 					 * Testa de a folha esta no lado direito
@@ -370,7 +372,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	 * @param filho
 	 * @return pai
 	 */
-	public Nodo buscaPai(Nodo filho)
+	public Nodo<T> buscaPai(Nodo<T> filho)
 	{
 		
 		//System.out.println("FIlho " + filho);
@@ -378,8 +380,8 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		if ( filho == raiz)
 			return null;
 		
-		Nodo anterior = null;
-		Nodo atual = raiz;
+		Nodo<T> anterior = null;
+		Nodo<T> atual = raiz;
 		
 		while( filho != atual)
 		{
@@ -403,7 +405,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	 * @return menor folha
 	 */
 	
-	public Nodo menorFolhaEsquerda(Nodo nodo)
+	public Nodo<T> menorFolhaEsquerda(Nodo<T> nodo)
 	{
 		/*
 		 * Percorre a arvore ate a ultima folha
@@ -419,28 +421,28 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		
 	public static void main(String[] args) {
 		
-		ArvoreBinaria<String> arvore = new ArvoreBinaria<>(new Nodo("j","716276336"));
+		ArvoreBinaria<String> arvore = new ArvoreBinaria<String>(new Nodo<String>("j","716276336"));
 
 		System.out.println(arvore.getTotalNodos());
-		arvore.insere(arvore.getRaiz(), new Nodo("b","282737347"));
+		arvore.insere(arvore.getRaiz(), new Nodo<String>("b","282737347"));
 		System.out.println(arvore.getTotalNodos());
-		arvore.insere(arvore.getRaiz(), new Nodo("c","282737347"));
+		arvore.insere(arvore.getRaiz(), new Nodo<String>("c","282737347"));
 		System.out.println(arvore.getTotalNodos());
-		arvore.insere(arvore.getRaiz(), new Nodo("d","282737347"));
+		arvore.insere(arvore.getRaiz(), new Nodo<String>("d","282737347"));
 		System.out.println(arvore.getTotalNodos());
-		arvore.insere(arvore.getRaiz(), new Nodo("e","282737347"));
+		arvore.insere(arvore.getRaiz(), new Nodo<String>("e","282737347"));
 		System.out.println(arvore.getTotalNodos());
-		arvore.insere(arvore.getRaiz(), new Nodo("f","282737347"));
+		arvore.insere(arvore.getRaiz(), new Nodo<String>("f","282737347"));
 		System.out.println(arvore.getTotalNodos());
-		arvore.insere(arvore.getRaiz(), new Nodo("g","282737347"));
+		arvore.insere(arvore.getRaiz(), new Nodo<String>("g","282737347"));
 		System.out.println(arvore.getTotalNodos());
-		arvore.insere(arvore.getRaiz(), new Nodo("a","282737347"));
+		arvore.insere(arvore.getRaiz(), new Nodo<String>("a","282737347"));
 		System.out.println(arvore.getTotalNodos());
-		arvore.insere(arvore.getRaiz(), new Nodo("p","282737347"));
+		arvore.insere(arvore.getRaiz(), new Nodo<String>("p","282737347"));
 		System.out.println(arvore.getTotalNodos());
-		arvore.insere(arvore.getRaiz(), new Nodo("r","282737347"));
+		arvore.insere(arvore.getRaiz(), new Nodo<String>("r","282737347"));
 		System.out.println(arvore.getTotalNodos());
-		arvore.insere(arvore.getRaiz(), new Nodo("k","282737347"));
+		arvore.insere(arvore.getRaiz(), new Nodo<String>("k","282737347"));
 		System.out.println(arvore.getTotalNodos());
 		
 		arvore.busca(arvore.getRaiz(), "j", 0);
@@ -453,6 +455,8 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		arvore.printInfixa(arvore.getRaiz());
 		
 		System.out.println(arvore.getAltura());
+		arvore.printPrefixa(arvore.getRaiz());
+		arvore.printTravessiaPosFixa(arvore.getRaiz());
 	}
 	
 }
