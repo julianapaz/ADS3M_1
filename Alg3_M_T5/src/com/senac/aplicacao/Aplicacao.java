@@ -163,12 +163,6 @@ public class Aplicacao{
 }
 
 
-
-
-/** Metodo que correga o arquivo txt para a lista, lendo contato por contato
-	
-	*@param recebe um arquivo txt como scanner*/
-
 	private static void carregaAgenda(Scanner arquivo)
 	{
 		char nomeTeste;
