@@ -70,6 +70,9 @@ public class ArvoreBinaria<T extends Comparable<T>>
 					totalNodos++;
 					if( r.getDireita() == null)
 						altura++;
+					System.out.println("Total de contatos: " + totalNodos + 
+							"\nAltura da arvore: "+altura);
+					
 				}
 				
 				//senao chamo o metodo de insercao enviando a raiz da esquerda
@@ -88,6 +91,8 @@ public class ArvoreBinaria<T extends Comparable<T>>
 					totalNodos++;
 					if(r.getEsquerda() == null)
 						altura++;
+					System.out.println("Total de contatos: " + totalNodos + 
+							"\nAltura da arvore: "+altura);
 				}
 				//senao chama o metodo insercao enviando a raiz da direita
 				else				
