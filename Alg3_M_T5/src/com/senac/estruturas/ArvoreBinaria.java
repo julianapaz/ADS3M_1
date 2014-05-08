@@ -5,13 +5,16 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	
 	private Nodo raiz;
 	private int totalNodos;
+	private int altura;
 
+	
 	
 	
 	public ArvoreBinaria(Nodo raiz)
 	{
 		this.raiz = raiz;
 		this.totalNodos = 1;
+		this.altura = -1;
 		
 
 	}
@@ -32,45 +35,66 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		return totalNodos;
 	}
 	
+	
+	public int getAltura()
+	{
+		return altura;
+	}
+	
+	
 	/**
-	 * Metodo que insere um nodo nodo a partir da raiz
-	 * @param r
+	 * Metodo que insere um novo nodo a partir da raiz
+	 * incrementa o total de nodos armazenados
+	 * @param raiz
 	 * @param novo
 	 * @return nodo inserido
-	 */
-	
+	 */	
 	public Nodo insere(Nodo r, Nodo novo)
 	{
 		
+		//chegou no final da arvore com uma raiz nula
 		if( r==null )
-			r = novo;
+			///r = novo;
+			System.out.println("Nodo ja existe na arvore");	
 		else
 		{
 			int cmp = novo.compareTo(r);
-		
+			
+			//se nodo menor que a raiz
 			if( cmp < 0 ) 
 			{
+				//se raiz nao tem filho no lado esquerdo
 				if( r.getEsquerda() == null )
 				{
+					//insere e incrementa o total de nodos na arvore
 					r.setEsquerda(novo);
 					totalNodos++;
+					if( r.getDireita() == null)
+						altura++;
 				}
-		
+				
+				//senao chamo o metodo de insercao enviando a raiz da esquerda
 				else
+					
 					r.setEsquerda(insere(r.getEsquerda(),novo));
 			}
+			//se nodo maior que a raiz
 			else if( cmp > 0 )
 			{
+				//raiz nao tem filho a direita
 				if( r.getDireita() == null )
 				{
+					//insere e incrementa o total de nodos da arvore
 					r.setDireita(novo);
 					totalNodos++;
+					if(r.getEsquerda() == null)
+						altura++;
 				}
-				else
+				//senao chama o metodo insercao enviando a raiz da direita
+				else				
 					r.setDireita(insere(r.getDireita(),novo));
-			}
-			else
-				System.out.println("Nodo ja existe na arvore");	
+			}			
+				
 		}
 		
 		
@@ -84,31 +108,66 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		return raiz.compareTo(o);
 	}
 	
-	
-	public void printInfixa(Nodo nodo)
+	/**
+	 * Metodo que imprime os nodos da arvore
+	 * na sequencia infixa
+	 * filho da esquerda
+	 * raiz
+	 * filho da direita
+	 *  
+	 * @param nodoRaiz
+	 */
+	public void printInfixa(Nodo nodoRaiz)
 	{
-		if( nodo != null )
+		if( nodoRaiz != null )
 		{
-			printInfixa(nodo.getEsquerda());
-			System.out.println(nodo);
-			printInfixa(nodo.getDireita());
+			printInfixa(nodoRaiz.getEsquerda());
+			System.out.println(nodoRaiz);
+			printInfixa(nodoRaiz.getDireita());
 			
 		}
 			
 	}
 	
-	public void printPrefixa(Nodo nodo)
+	/**
+	 * Metodo que imprime os nodos da arvore 
+	 * na sequencia prefixa
+	 * raiz
+	 * filho da esquerda
+	 * filho da direita
+	 * 
+	 * @param nodoRaiz
+	 */
+	public void printPrefixa(Nodo nodoRaiz)
 	{
-		if( nodo != null )
+		if( nodoRaiz != null )
 		{
-			System.out.println(nodo);
-			printInfixa(nodo.getEsquerda());
-			printInfixa(nodo.getDireita());
+			System.out.println(nodoRaiz);
+			printInfixa(nodoRaiz.getEsquerda());
+			printInfixa(nodoRaiz.getDireita());
 		}
 	}
 	
 	/**
-	 * Metodo que busca um nodo na arvore
+	 * Metodo que imprime os nodos da arvore
+	 * na sequencia posfixa
+	 * filho da esquerda
+	 * filho da direita
+	 * raiz
+	 * @param nodoRaiz
+	 */
+	public void printTravessiaPosFixa(Nodo nodoRaiz)
+	{
+		if( nodoRaiz != null )
+		{			
+			printInfixa(nodoRaiz.getEsquerda());
+			printInfixa(nodoRaiz.getDireita());
+			System.out.println(nodoRaiz);
+		}
+	}
+	
+	/**
+	 * Metodo Recursivo que busca um nodo na arvore
 	 * se existir exibe seu conteudo e nr de comparacoes
 	 * @param nodoRaiz
 	 * @param chave
@@ -166,10 +225,11 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		}
 	}
 	/**
-	 * Metodo recursivo de remover um nodo
-	 * @param r
+	 * Metodo recursivo para remover um nodo
+	 * 
+	 * @param raiz
 	 * @param chave
-	 * @return
+	 * @return nodo removido
 	 */
 	
 	
@@ -266,27 +326,50 @@ public class ArvoreBinaria<T extends Comparable<T>>
 				// apaga as referencias do antigo pai da folha
 				else
 				{
+					/*
+					 * Busca o menor filho a direita
+					 */
 					Nodo menorFolha = menorFolhaEsquerda(r.getDireita());
+					
+					
+					/*
+					 * Busca o pai da menor folha
+					 */
 					Nodo pai = buscaPai(menorFolha);
 					
+					/*
+					 * Testa de a folha esta no lado direito
+					 * anula a referencia do filho da direita
+					 */
 					if(menorFolha.compareTo(pai) > 0)
 						pai.setDireita(null);
+					
+					/*
+					 * Senao anula a referencia do filho da esquerda
+					 */
 					else
 						pai.setEsquerda(null);
+					
+					/*
+					 * A raiz recebe o conteudo da menor folha
+					 */
 					r.setChave(menorFolha.getChave());
 					r.setDado(menorFolha.getDado());
 				}
 					
 			}
 				
-		}
-		
-		
+		}		
 		
 		return r;
 	}
-	
-	
+	/**
+	 * Metodo que recebe um nodo filho
+	 * percorre a arvore comparando se o nodo de 
+	 * entrada eh filho do nodo corrente
+	 * @param filho
+	 * @return pai
+	 */
 	public Nodo buscaPai(Nodo filho)
 	{
 		
@@ -313,15 +396,23 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		
 	}	
 	
+	/**
+	 * Metodo que percorre a arvore do nodo direito
+	 * returno a menor folha - ultima folha filha esquerda
+	 * @param nodo - raiz
+	 * @return menor folha
+	 */
+	
 	public Nodo menorFolhaEsquerda(Nodo nodo)
 	{
-		System.out.println("Metodo menor a direita da esquerda");
-		
+		/*
+		 * Percorre a arvore ate a ultima folha
+		 * 	
+		 */
 		while(nodo.getEsquerda() != null )
-		{
-			nodo = nodo.getEsquerda();
-			System.out.println("Nodo esquerda " + nodo);
-		}
+
+			//nodo atual recebe o filho da esquerda
+			nodo = nodo.getEsquerda();		
 		
 		return nodo;
 	}
@@ -360,6 +451,8 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		
 		arvore.remove(null, "j");
 		arvore.printInfixa(arvore.getRaiz());
+		
+		System.out.println(arvore.getAltura());
 	}
 	
 }
