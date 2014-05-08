@@ -5,16 +5,12 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	
 	private Nodo<T> raiz;
 	private int totalNodos;
-
-
-	
 	
 	
 	public ArvoreBinaria(Nodo<T> raiz)
 	{
 		this.raiz = raiz;
 		this.totalNodos = 1;
-		
 
 	}
 	
@@ -144,13 +140,13 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	 *  
 	 * @param nodoRaiz
 	 */
-	public void printInfixa(Nodo<T> nodoRaiz)
+	public void travessiaInfixa(Nodo<T> nodoRaiz)
 	{
 		if( nodoRaiz != null )
 		{
-			printInfixa(nodoRaiz.getEsquerda());
+			travessiaInfixa(nodoRaiz.getEsquerda());
 			System.out.println(nodoRaiz);
-			printInfixa(nodoRaiz.getDireita());
+			travessiaInfixa(nodoRaiz.getDireita());
 			
 		}
 			
@@ -165,13 +161,13 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	 * 
 	 * @param nodoRaiz
 	 */
-	public void printPrefixa(Nodo<T> nodoRaiz)
+	public void travessiaPrefixa(Nodo<T> nodoRaiz)
 	{
 		if( nodoRaiz != null )
 		{
 			System.out.println(nodoRaiz);
-			printInfixa(nodoRaiz.getEsquerda());
-			printInfixa(nodoRaiz.getDireita());
+			travessiaInfixa(nodoRaiz.getEsquerda());
+			travessiaInfixa(nodoRaiz.getDireita());
 		}
 	}
 	
@@ -183,12 +179,12 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	 * raiz
 	 * @param nodoRaiz
 	 */
-	public void printTravessiaPosFixa(Nodo<T> nodoRaiz)
+	public void travessiaTravessiaPosFixa(Nodo<T> nodoRaiz)
 	{
 		if( nodoRaiz != null )
 		{			
-			printInfixa(nodoRaiz.getEsquerda());
-			printInfixa(nodoRaiz.getDireita());
+			travessiaInfixa(nodoRaiz.getEsquerda());
+			travessiaInfixa(nodoRaiz.getDireita());
 			System.out.println(nodoRaiz);
 		}
 	}
@@ -489,7 +485,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		//arvore.remove(arvore.getRaiz(), "j");
 		System.out.println(arvore.getTotalNodos());
 	//	System.out.println(arvore.getAltura());
-		arvore.printInfixa(arvore.getRaiz());
+		arvore.travessiaInfixa(arvore.getRaiz());
 	}
 	
 }
