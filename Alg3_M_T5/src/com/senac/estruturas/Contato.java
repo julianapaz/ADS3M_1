@@ -1,5 +1,5 @@
 package com.senac.estruturas;
-public class Contato<T extends Comparable<T>> implements Comparable<Contato<T>>{
+public class Contato<T extends Comparable<T>> {
 	
 	private String nome;
 	private String telefone;
@@ -29,8 +29,7 @@ public class Contato<T extends Comparable<T>> implements Comparable<Contato<T>>{
 		this.telefone = telefone;
 	}
 	
-	
-	@Override
+	//nao sei usar compare 
 	public int compareTo(Contato<T> c) {
 		return nome.compareTo(c.getNome());
 	}
