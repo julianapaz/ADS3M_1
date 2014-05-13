@@ -79,6 +79,7 @@ public class Aplicacao{
 		
 		agenda.insere( agenda.getRaiz(), new Nodo<String>( novo.getNome(), novo.getTelefone()));
 		insereNoArquivo(novo);
+		System.out.println("Altura: "  + agenda.altura(agenda.getRaiz()));
 		System.out.println("Total de contatos: "+agenda.getTotalNodos());
 	}
 	/**

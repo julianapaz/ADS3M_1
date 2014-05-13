@@ -114,8 +114,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			travessiaInfixa(nodoRaiz.getEsquerda());
 			System.out.println(nodoRaiz);
 			travessiaInfixa(nodoRaiz.getDireita());	
-		}
-			
+		}			
 	}
 	
 	/**
@@ -225,7 +224,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		//atualiza a altura
 		//nr de nodos
 		if(r == null)
-			System.out.println("Nao existe o dado na arvore");
+			System.out.println("Dado nao existe na arvore");
 		
 		else
 		{
@@ -410,6 +409,39 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		
 		return nodo;
 	}
+	
+	public int altura(Nodo<T> nodoRaiz)
+	{
+		if ( nodoRaiz == null )
+			return 0;
+		
+		else
+		{
+			int alturaDireita = altura(nodoRaiz.getDireita());
+			int alturaEsquerda = altura(nodoRaiz.getEsquerda());
+			
+			if ( alturaDireita>alturaEsquerda )
+				return alturaDireita + 1;
+			else
+				return alturaEsquerda + 1;
+		}
+			
+	}
+	
+	
+	/*public void buscaEMProfundidade(Nodo<T> nodoRaiz)
+	{
+		//declara uma fila
+		//e r d
+	}	*/
+	
+	/*public void buscaemLargura(Nodo<T> nodoRaiz)
+	{
+	//declara uma pilha
+	 //e r d
+		
+	}
+	*/
 		
 	public static void main(String[] args) {
 		
@@ -444,13 +476,16 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		/*arvore.busca(arvore.getRaiz(), "j", 0);
 		arvore.busca(arvore.getRaiz(), "g", 0);
 		arvore.busca(arvore.getRaiz(), "a", 0);
-		arvore.busca(arvore.getRaiz(), "x", 0);*/
+		arvore.busca(arvore.getRaiz(), "x", 0);
+		arvore.remove(arvore.getRaiz(), "x");*/
 
-		
-		//arvore.remove(arvore.getRaiz(), "j");
-		System.out.println(arvore.getTotalNodos());
-	//	System.out.println(arvore.getAltura());
-		arvore.travessiaInfixa(arvore.getRaiz());
+		//System.out.println(arvore.getTotalNodos());
+		//System.out.println("Altura " + arvore.altura(arvore.getRaiz()));
+		//arvore.travessiaInfixa(arvore.getRaiz());
+		//arvore.remove(arvore.getRaiz(), "c");
+		//System.out.println(arvore.getTotalNodos());
+		//arvore.travessiaInfixa(arvore.getRaiz());
+	//	System.out.println(arvore.filhosEsquerda(arvore.getRaiz()));
 	
 	
 	}

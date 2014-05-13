@@ -10,6 +10,11 @@ public class Nodo<T extends Comparable<T>> implements Comparable<Nodo<T>>
 	
 	public Nodo()
 	{
+		dado = null;
+		chave = null;
+		esquerda = null;
+		direita = null;
+				
 	}
 	
 	public Nodo(T chave, T dado)
