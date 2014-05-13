@@ -11,7 +11,6 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	{
 		this.raiz = raiz;
 		this.totalNodos = 1;
-
 	}
 	
 	public ArvoreBinaria()
@@ -29,59 +28,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	{
 		return totalNodos;
 	}
-	
-	
-	
-	/*public int altura(Nodo<T> nodoRaiz, int altura)
-	{
-				
-		if(nodoRaiz != null)
-			altura++;
 		
-		return altura;
-	}
-	
-	public int altura(Nodo<T> nodoRaiz)
-	{
-		int alturaEsquerda = altura(nodoRaiz.getEsquerda(), 1);
-		int altDireita = altura(nodoRaiz.getDireita(), 1);
-		
-		if ( alturaEsquerda > altDireita)
-			return alturaEsquerda+1;
-		else
-			return altDireita+1;
-	}
-	*/
-	
-	/*public int getAltura(Nodo<T> nodoRaiz)
-	{
-			  int alturaEsquerda = 0;
-			  int alturaDireita = 0;
-			  Nodo<T> nodoEsquerda = raiz;
-			  
-			  while( nodoEsquerda.getEsquerda() != null )
-			  {
-				  alturaEsquerda++;
-				  nodoEsquerda = nodoEsquerda.getEsquerda();
-				  System.out.println(alturaEsquerda);
-			  }
-			  
-			  Nodo<T> nodoDireita = raiz;
-			  
-			  while( nodoDireita.getDireita() != null )
-			  {
-				  alturaDireita++;
-				  nodoDireita = nodoDireita.getDireita();
-				  System.out.println(alturaDireita);
-			  }
-			  
-			  if ( alturaDireita > alturaEsquerda )
-				  return alturaDireita;
-			  else
-				  return alturaEsquerda;
-	}
-	*/
-	
 	/**
 	 * Metodo que insere um novo nodo a partir da raiz
 	 * incrementa o total de nodos armazenados
@@ -108,7 +55,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 				//se raiz nao tem filho no lado esquerdo
 				if( r.getEsquerda() == null )
 				{
-					//insere e incrementa o total de nodos na arvore
+					//insere e incrementa o total de nodos da arvore
 					r.setEsquerda(novo);
 					totalNodos++;
 			
@@ -128,20 +75,17 @@ public class ArvoreBinaria<T extends Comparable<T>>
 				{
 					//insere e incrementa o total de nodos da arvore
 					r.setDireita(novo);
-					totalNodos++;
-					
-					
+					totalNodos++;					
 				}
 				//senao chama o metodo insercao enviando a raiz da direita
 				else				
 					r.setDireita(insere(r.getDireita(),novo));
 			}
+			//eh igual
 			else
-				System.out.println("Dado ja esta na arvore");
-				
+				System.out.println("Dado ja esta na arvore");		
 		}
-		
-		
+				
 		return r;
 	}
 	
@@ -169,8 +113,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		{
 			travessiaInfixa(nodoRaiz.getEsquerda());
 			System.out.println(nodoRaiz);
-			travessiaInfixa(nodoRaiz.getDireita());
-			
+			travessiaInfixa(nodoRaiz.getDireita());	
 		}
 			
 	}
@@ -271,17 +214,16 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		}
 	}
 	/**
-	 * Metodo recursivo para remover um nodo
+	 * Metodo para remover um nodo
 	 * 
 	 * @param raiz
 	 * @param chave
 	 * @return nodo removido
-	 */
-	
-	
+	 */	
 	public Nodo<T> remove(Nodo<T> r, T chave)
 	{
 		//atualiza a altura
+		//nr de nodos
 		if(r == null)
 			System.out.println("Nao existe o dado na arvore");
 		
@@ -390,13 +332,13 @@ public class ArvoreBinaria<T extends Comparable<T>>
 				}
 
 				//nodo tem filhos esq e direita
-				//busca a menor folha da direita da esquerda
+				//busca a menor folha da direita
 				//a menor folha assume o lugar da raiz - nodo a ser removido
 				// nodo ser removido recebe as informacoes da menor folha
 				// apaga as referencias do antigo pai da folha
 				else
 				{
-					Nodo<T> menorFolha = menorFolhaEsquerda(r.getDireita());
+					Nodo<T> menorFolha = menorFolhaDireita(r.getDireita());
 					Nodo<T> pai = buscaPai(menorFolha);
 					
 					if(menorFolha.compareTo(pai) > 0)
@@ -455,7 +397,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	 * @return menor folha
 	 */
 	
-	public Nodo<T> menorFolhaEsquerda(Nodo<T> nodo)
+	public Nodo<T> menorFolhaDireita(Nodo<T> nodo)
 	{
 		/*
 		 * Percorre a arvore ate a ultima folha

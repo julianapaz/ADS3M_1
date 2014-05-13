@@ -12,7 +12,6 @@ import com.senac.estruturas.ArvoreBinaria;
 import com.senac.estruturas.Contato;
 import com.senac.estruturas.Nodo;
 
-
 public class Aplicacao{
 	
 	private static ArvoreBinaria<String> agenda = new ArvoreBinaria<String>();
@@ -22,12 +21,8 @@ public class Aplicacao{
 
 	
 	public static void main(String[] args) throws Exception 
-	{
-		
-		
-		
-		 
-		FileInputStream arquivo = new FileInputStream("agenda.txt");
+	{		
+		 FileInputStream arquivo = new FileInputStream("agenda.txt");
 		//Chamada do metodo que carrega o arquivo na memoria
 		carregaAgenda(new Scanner(arquivo));
 		arquivo.close();
@@ -165,7 +160,8 @@ public class Aplicacao{
 			int op = -1;
 			while( op!= 0 )
 			{
-				System.out.println(agenda.getTotalNodos());
+				//System.out.println(agenda.getTotalNodos());
+				//System.out.println(agenda.getAltura(agenda.getRaiz()));
 				System.out.println("1-Travessia Prefixa\n2-Travessia Infixa\n3-Travessia Posfixa" +
 		 		"\n4-Busca em Largura\n5-Busca em Profundidade\n0-VOLTAR");
 				op = entrada.nextInt();
