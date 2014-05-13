@@ -24,13 +24,17 @@ public class Aplicacao{
 	public static void main(String[] args) throws Exception 
 	{
 		
+		
+		
+		 
 		FileInputStream arquivo = new FileInputStream("agenda.txt");
+		//Chamada do metodo que carrega o arquivo na memoria
 		carregaAgenda(new Scanner(arquivo));
 		arquivo.close();
 		
 		int opcao = -1;
 		
-		
+		//Exibe menu
 		while (opcao != 0)
 		{
 			System.out.print("AGENDA \nDigite sua opcao \n" + "1-Adicionar contato\n"
@@ -65,7 +69,10 @@ public class Aplicacao{
 		
 	}
 	
-	
+	/**
+	 * Metodo que insere um novo contato na agenda
+	 * @throws IOException
+	 */
 
 	private static void cadatraNovoContato() throws IOException {
 		// TODO Auto-generated method stub
@@ -78,8 +85,12 @@ public class Aplicacao{
 		agenda.insere( agenda.getRaiz(), new Nodo<String>( novo.getNome(), novo.getTelefone()));
 		insereNoArquivo(novo);
 		System.out.println("Total de contatos: "+agenda.getTotalNodos());
-	//	System.out.println("Altura da arvore: "+agenda.getAltura());
 	}
+	/**
+	 * Metodo que escreve o novo contato no arquivo
+	 * @param novo
+	 * @throws IOException
+	 */
 
 	public static void insereNoArquivo(Contato<String> novo) throws IOException
 	{
@@ -93,7 +104,9 @@ public class Aplicacao{
 	}
 	
 
-
+	/**
+	 * Metodo que busca um nome na agenda
+	 */
 	private static void buscaContato()
 	{
 		String nome;
@@ -101,7 +114,11 @@ public class Aplicacao{
 		nome = entrada.next();
 		agenda.busca(agenda.getRaiz(), nome, 0);	
 	}
-
+	
+	/**
+	 * Metodo que remove um contato da agenda
+	 * @throws IOException
+	 */
 	private static void removeContato() throws IOException 
 	{
 		String nome;
@@ -111,8 +128,12 @@ public class Aplicacao{
 		if( contatoRemovido != null )
 			marcaNomeRemovido(contatoRemovido);
 	}
-
-
+	
+	/**
+	 * Metodo que insere um marcado no nome removido 
+	 * @param nodo
+	 * @throws IOException
+	 */
 	public static void marcaNomeRemovido(Nodo<String> nodo) throws IOException
 	{
 	
@@ -139,47 +160,52 @@ public class Aplicacao{
 		new File("tmp.txt").renameTo(new File("agenda.txt"));
 		}
 
-	private static void OpcoesDeExibicaoDeElementos() 
-	{
-		int op = -1;
-		while( op!= 0 )
+		private static void OpcoesDeExibicaoDeElementos() 
 		{
-			System.out.println("1-Travessia Prefixa\n2-Travessia Infixa\n3-Travessia Posfixa" +
+			int op = -1;
+			while( op!= 0 )
+			{
+				System.out.println(agenda.getTotalNodos());
+				System.out.println("1-Travessia Prefixa\n2-Travessia Infixa\n3-Travessia Posfixa" +
 		 		"\n4-Busca em Largura\n5-Busca em Profundidade\n0-VOLTAR");
-			op = entrada.nextInt();
+				op = entrada.nextInt();
 		 
-			if ( op == 1 )
-				agenda.travessiaPrefixa(agenda.getRaiz());
-			else if ( op == 2 )
-				agenda.travessiaInfixa(agenda.getRaiz());
-			else if ( op == 3 )
-				 agenda.travessiaTravessiaPosFixa(agenda.getRaiz());
-			else
-				System.out.println("OPCAO INVALIDA");
+				if ( op == 1 )
+					agenda.travessiaPrefixa(agenda.getRaiz());
+				else if ( op == 2 )
+					agenda.travessiaInfixa(agenda.getRaiz());
+				else if ( op == 3 )
+				 agenda.travessiaPosFixa(agenda.getRaiz());
+				else
+					System.out.println("OPCAO INVALIDA");
 		 /******************
 		  * FAZER O RESTANTE
 		  */
-	 }
-}
-
-
-	private static void carregaAgenda(Scanner arquivo)
-	{
-		char nomeTeste;
-		
-		while (arquivo.hasNext()) 
-		{	
-			novoContato.setNome(arquivo.next());
-			nomeTeste = novoContato.getNome().charAt(0);
-			if(nomeTeste == MARCADOR)
-				arquivo.next();
-			else
-			{
-				novoContato.setTelefone(arquivo.next());
-				agenda.insere(agenda.getRaiz(),new Nodo<>(novoContato.getNome(), novoContato.getTelefone()));
 			}
 		}
-		arquivo.close();
+		
+		/**
+		 * Metodo que le contato do arquivo
+		 * Testa se eh um contato valido
+		 * Insere na arvore
+		 */
+		private static void carregaAgenda(Scanner arquivo)
+		{
+			char nomeTeste;
+		
+			while (arquivo.hasNext()) 
+			{	
+				novoContato.setNome(arquivo.next());
+				nomeTeste = novoContato.getNome().charAt(0);
+				if(nomeTeste == MARCADOR)
+					arquivo.next();
+				else
+				{
+					novoContato.setTelefone(arquivo.next());
+					agenda.insere(agenda.getRaiz(),new Nodo<>(novoContato.getNome(), novoContato.getTelefone()));
+				}
+			}
+			arquivo.close();
 		}
 			
 	}

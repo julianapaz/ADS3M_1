@@ -31,7 +31,29 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	}
 	
 	
-	public int getAltura(Nodo<T> nodoRaiz)
+	
+	/*public int altura(Nodo<T> nodoRaiz, int altura)
+	{
+				
+		if(nodoRaiz != null)
+			altura++;
+		
+		return altura;
+	}
+	
+	public int altura(Nodo<T> nodoRaiz)
+	{
+		int alturaEsquerda = altura(nodoRaiz.getEsquerda(), 1);
+		int altDireita = altura(nodoRaiz.getDireita(), 1);
+		
+		if ( alturaEsquerda > altDireita)
+			return alturaEsquerda+1;
+		else
+			return altDireita+1;
+	}
+	*/
+	
+	/*public int getAltura(Nodo<T> nodoRaiz)
 	{
 			  int alturaEsquerda = 0;
 			  int alturaDireita = 0;
@@ -58,7 +80,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 			  else
 				  return alturaEsquerda;
 	}
-	
+	*/
 	
 	/**
 	 * Metodo que insere um novo nodo a partir da raiz
@@ -89,6 +111,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 					//insere e incrementa o total de nodos na arvore
 					r.setEsquerda(novo);
 					totalNodos++;
+			
 		
 				}
 				
@@ -106,7 +129,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 					//insere e incrementa o total de nodos da arvore
 					r.setDireita(novo);
 					totalNodos++;
-	
+					
 					
 				}
 				//senao chama o metodo insercao enviando a raiz da direita
@@ -179,7 +202,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	 * raiz
 	 * @param nodoRaiz
 	 */
-	public void travessiaTravessiaPosFixa(Nodo<T> nodoRaiz)
+	public void travessiaPosFixa(Nodo<T> nodoRaiz)
 	{
 		if( nodoRaiz != null )
 		{			
@@ -190,7 +213,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 	}
 	
 	/**
-	 * Metodo Recursivo que busca um nodo na arvore
+	 * Metodo que busca um nodo na arvore
 	 * se existir exibe seu conteudo e nr de comparacoes
 	 * @param nodoRaiz
 	 * @param chave
@@ -486,6 +509,8 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		System.out.println(arvore.getTotalNodos());
 	//	System.out.println(arvore.getAltura());
 		arvore.travessiaInfixa(arvore.getRaiz());
+	
+	
 	}
 	
 }
