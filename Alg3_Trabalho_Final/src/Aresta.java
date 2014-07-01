@@ -1,48 +1,39 @@
 
-public class Aresta {
+public class Aresta 
+{
+	private Vertice verticeA;
+	private Vertice verticeB;
+	private double custo;
+	private double distancia;
 	
-	public int tamanho;
-	public double[][] matriz;
-	
-	public Aresta(int tamanho)
+	public Aresta( Vertice verticeA, Vertice verticeB, double custo)
 	{
-		this.tamanho = tamanho;
+		this.verticeA = verticeA;
+		this.verticeB = verticeB;
+		this.custo = custo;		
+		//chama metodo que calcula distancia
+	}
+	
+	
+	public double getCusto()
+	{
+		return custo;
+	}
+	
+	public double calculaDistancia()
+	{
+		return distancia; 
+	}
+	
+	
+	
+	public String toString()
+	{
+		/*String aresta = "Vertice A: "+verticeA +
+				" Vertice B: " + verticeB + " Custo: " + custo;*/
 		
-		matriz = new double[tamanho][tamanho];
-	}
-	
-	public void setAresta(int linha, int coluna, double valor)
-	{
-		matriz[linha][coluna] = valor;
-	}
-	
-	public double getAresta(int coluna, int linha)
-	{
-		return matriz[coluna][linha];
+		String aresta = verticeA.toString() + " " + verticeB.toString();
 		
+		return aresta;
 	}
-	
-	public void print()
-	{
-		System.out.println("\t");
-		for ( int linha =0; linha<tamanho; linha++)
-		{
-			if ( linha == 0 )
-				System.out.print("\t");
-			System.out.print(linha+"\t");
-		
-		}
-		System.out.println("\t");
-	for ( int coluna=0; coluna < tamanho; coluna++ )
-	{
-
-		System.out.print(coluna + "\t");
-		for ( int linha=0; linha <tamanho; linha++ )
-		{
-			System.out.print(matriz[linha][coluna] + "\t");
-		}
-		System.out.println();
-	}
-	}
-
 }
