@@ -111,9 +111,7 @@ public class app {
 						s.push(conectados.pop());
 					
 					vertices[x].setVisitado(true);
-				
 				}
-				
 			}
 
 			else
