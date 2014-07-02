@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class app {
 
-	public static Vertice[] vertices = new Vertice[50];
+	public static Vertice[] vertices = new Vertice[7];
 	
 	public static MatrizAdjacencias arestas;
 
@@ -68,9 +68,12 @@ public class app {
 		
 		arquivo.close();
 		arestas.print();
+	//	algoritmo();
+		verticesConectados(1);
+		
 	}
 	
-	public void algoritmo()
+	public static void algoritmo()
 	{
 		boolean[] vistitados = new boolean[vertices.length];
 		int[] anteriores = new int[vertices.length];
@@ -87,31 +90,43 @@ public class app {
 		{
 			x = (int) s.pop();
 			
-			if ( vertices[x].foiVisitado() )
+			if ( !vertices[x].foiVisitado() )
 			{
 				Stack conectados = new Stack<>();
 				conectados = verticesConectados(x);
-				s.push(conectados.pop());
+				while ( !conectados.empty() )
+					s.push(conectados.pop());
+				vertices[x].foiVisitado();
+				//calcula custo
+				
 				
 			}
 		}		
 	}
 	
-	public Stack verticesConectados(int vertice)
+	public static Stack verticesConectados(int vertice)
 	{
 		Stack conectados = new Stack();
+		//System.out.println(vertices.length);
 		
 		for ( int c = 0; c<vertices.length; c++)
 		{
-			for ( int l = 0; l<vertices.length; l++)
+			if ( c == vertice )
 			{
-				if (c == vertice && !vertices[l].equals(null))
-					conectados.push(l);
+				for ( int l = 0; l<vertices.length; l++)
+				{
+					if ( arestas.getAresta(c,l) != null )
+					{
+						System.out.print("Conectado: ");
+						System.out.print(c);
+						System.out.print(" ");
+						System.out.println(l);
+						//conectados.push(l);
+					}
+				}
 			}
 		}
-		
 		return conectados;
-		
 	}
 	
 	
