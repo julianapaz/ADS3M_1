@@ -104,6 +104,7 @@ public class app {
 		}		
 	}
 	
+	// ok - testado
 	public static Stack verticesConectados(int vertice)
 	{
 		Stack conectados = new Stack();
@@ -117,14 +118,16 @@ public class app {
 				{
 					if ( arestas.getAresta(c,l) != null )
 					{
-						System.out.print("Conectado: ");
+						/*System.out.print("Conectado: ");
 						System.out.print(c);
 						System.out.print(" ");
-						System.out.println(l);
-						//conectados.push(l);
+						System.out.println(l);*/
+						conectados.push(l);
 					}
 				}
 			}
+			/*while ( !conectados.isEmpty() )
+				System.out.println(conectados.pop());*/
 		}
 		return conectados;
 	}

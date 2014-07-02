@@ -1,6 +1,6 @@
 public class Vertice 
 {
-
+	//atributos
 	private int identificacao;
 	private double coordenadaX;
 	private double coordenadaY;
