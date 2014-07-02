@@ -68,46 +68,63 @@ public class app {
 		
 		arquivo.close();
 		arestas.print();
-	//	algoritmo();
-		verticesConectados(1);
+		algoritmo();
+	//	verticesConectados(1);
 		
 	}
 	
 	public static void algoritmo()
-	{
-		boolean[] vistitados = new boolean[vertices.length];
-		int[] anteriores = new int[vertices.length];
-		double[] custo = new double[vertices.length];
+	{	
+		//pilha dos vertices
+		Stack<Integer> s = new Stack<Integer>();
 		
-		Stack s = new Stack();
+		s.push(vertices[0].getIdentificador());
 		
-		s.push(1);
-		
+		//vertice atual
 		int x = -1;
 		
-		
+		//enquanto a pilha nao for vazia
 		while ( !s.empty() )
 		{
+			//x recebe o topo
 			x = (int) s.pop();
 			
-			if ( !vertices[x].foiVisitado() )
+			//se o vertice nao foi visitado
+			if ( !vertices[x].visitado() )
 			{
-				Stack conectados = new Stack<>();
+				//pilha com todos os vertices alcancaveis
+				Stack<Integer> conectados = new Stack<Integer>();
+				//pilha que recebe todos os vertices alcancaveis por x
 				conectados = verticesConectados(x);
-				while ( !conectados.empty() )
-					s.push(conectados.pop());
-				vertices[x].foiVisitado();
-				//calcula custo
 				
+				//enquanto pilha nao estiver vazia
+				while ( !conectados.empty() )
+				{
+					
+					double c = vertices[(int) conectados.peek()].getCusto();
+					
+					//calcula custo
+					//atualiza vertices
+					//atualiza anterior
+				
+					if ( !vertices[(int) conectados.peek()].visitado() )
+						s.push(conectados.pop());
+					
+					vertices[x].setVisitado(true);
+				
+				}
 				
 			}
+
+			else
+				s.pop();
 		}		
 	}
 	
 	// ok - testado
-	public static Stack verticesConectados(int vertice)
+	public static Stack<Integer> verticesConectados(int vertice)
 	{
-		Stack conectados = new Stack();
+		Stack<Integer> conectados = new Stack<Integer>();
 		//System.out.println(vertices.length);
 		
 		for ( int c = 0; c<vertices.length; c++)
@@ -125,6 +142,7 @@ public class app {
 						conectados.push(l);
 					}
 				}
+				break;
 			}
 			/*while ( !conectados.isEmpty() )
 				System.out.println(conectados.pop());*/

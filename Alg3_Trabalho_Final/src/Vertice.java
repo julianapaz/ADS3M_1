@@ -1,7 +1,7 @@
 public class Vertice 
 {
 	//atributos
-	private int identificacao;
+	private int identificador;
 	private double coordenadaX;
 	private double coordenadaY;
 	
@@ -11,7 +11,7 @@ public class Vertice
 	
 	public Vertice(int identificacao, double coordenadaX, double coordenadaY)
 	{
-		this.identificacao = identificacao;
+		this.identificador = identificacao;
 		this.coordenadaX = coordenadaX;
 		this.coordenadaY = coordenadaY;
 		visitado = false;
@@ -22,17 +22,22 @@ public class Vertice
 		
 	}
 	
-	public boolean foiVisitado()
+	public boolean visitado()
 	{
 		return visitado;
 	}
-
-	public int getIdentificacao() {
-		return identificacao;
+	
+	public void setVisitado(boolean v)
+	{
+		visitado = v;
 	}
 
-	public void setIdentificacao(int identificacao) {
-		this.identificacao = identificacao;
+	public int getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(int identificacao) {
+		this.identificador = identificacao;
 	}
 
 	public double getCoordenadaX() {
@@ -51,9 +56,15 @@ public class Vertice
 		this.coordenadaY = coordenadaY;
 	}
 	
+	
+	public double getCusto()
+	{
+		return custo;
+	}
+	
 	public String toString()
 	{
-		String n = identificacao + " " + coordenadaX + " " + coordenadaY;
+		String n = identificador + " " + coordenadaX + " " + coordenadaY;
 		return n;
 	}
 }
