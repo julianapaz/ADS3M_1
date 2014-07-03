@@ -14,7 +14,7 @@ public class app {
 	public static void main(String[] args) throws IOException 
 	{
 
-		FileInputStream arquivo = new FileInputStream("grafo.txt");
+		FileInputStream arquivo = new FileInputStream("grafoTeste.txt");
 		carregaArquivo(new Scanner(arquivo));
 		arquivo.close();
 
