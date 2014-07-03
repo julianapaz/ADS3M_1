@@ -6,7 +6,7 @@ import java.util.Stack;
 public class app {
 
 	//vetor de vertices
-	public static Vertice[] vertices = new Vertice[7];
+	public static Vertice[] vertices = new Vertice[50];
 	
 	//matriz formada por arestas
 	public static MatrizAdjacencias arestas;
