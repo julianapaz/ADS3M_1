@@ -13,10 +13,11 @@ public class app {
 
 	public static void main(String[] args) throws IOException 
 	{
-		//carregando arquivo grafo.txt
+
 		FileInputStream arquivo = new FileInputStream("grafo.txt");
 		carregaArquivo(new Scanner(arquivo));
 		arquivo.close();
+
 		algoritmo();
 	}
 
