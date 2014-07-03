@@ -5,7 +5,7 @@ public class Vertice
 	private double coordenadaX;
 	private double coordenadaY;
 	
-	private Vertice anterior;
+	private int anterior;
 	private double custo;
 	private boolean visitado;
 	
@@ -60,6 +60,11 @@ public class Vertice
 	public double getCusto()
 	{
 		return custo;
+	}
+	
+	public void setAnterior(int anterior)
+	{
+		this.anterior = anterior;
 	}
 	
 	public String toString()

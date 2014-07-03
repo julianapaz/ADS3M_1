@@ -5,15 +5,19 @@ import java.util.Stack;
 
 public class app {
 
+	//vetor de vertices
 	public static Vertice[] vertices = new Vertice[7];
 	
+	//matriz formada por arestas
 	public static MatrizAdjacencias arestas;
 
 	public static void main(String[] args) throws IOException 
 	{
+		//carregando arquivo grafo.txt
 		FileInputStream arquivo = new FileInputStream("grafo.txt");
 		carregaArquivo(new Scanner(arquivo));
 		arquivo.close();
+		algoritmo();
 	}
 
 	public static void carregaArquivo(Scanner arquivo)
@@ -67,8 +71,8 @@ public class app {
 		}
 		
 		arquivo.close();
-		arestas.print();
-		algoritmo();
+		//arestas.print();
+		
 	//	verticesConectados(1);
 		
 	}
@@ -78,16 +82,17 @@ public class app {
 		//pilha dos vertices
 		Stack<Integer> s = new Stack<Integer>();
 		
+		//insere um valor incial na pilha
 		s.push(vertices[0].getIdentificador());
 		
-		//vertice atual
+		//indice atual
 		int x = -1;
 		
 		//enquanto a pilha nao for vazia
 		while ( !s.empty() )
 		{
 			//x recebe o topo
-			x = (int) s.pop();
+			x = s.pop();
 			
 			//se o vertice nao foi visitado
 			if ( !vertices[x].visitado() )
@@ -101,11 +106,12 @@ public class app {
 				while ( !conectados.empty() )
 				{
 					
-					double c = vertices[(int) conectados.peek()].getCusto();
+					double c = vertices[conectados.peek()].getCusto();
 					
 					//calcula custo
 					//atualiza vertices
 					//atualiza anterior
+					vertices[conectados.peek()].setAnterior(x);
 				
 					if ( !vertices[(int) conectados.peek()].visitado() )
 						s.push(conectados.pop());
