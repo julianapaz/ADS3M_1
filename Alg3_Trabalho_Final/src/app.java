@@ -23,7 +23,6 @@ public class app {
 
 	public static void carregaArquivo(Scanner arquivo)
 	{
-
 		String leituraAtual = arquivo.next();
 		int id = -1;
 		double coordenadaX = -1.0;
@@ -31,7 +30,6 @@ public class app {
 	
 		while ( !arquivo.hasNext("arestas") ) 
 		{			
-
 			leituraAtual = arquivo.next();
 			id = Integer.parseInt(leituraAtual);
 
@@ -41,8 +39,7 @@ public class app {
 			leituraAtual = arquivo.next();
 			coordenadaY = Double.parseDouble(leituraAtual);
 
-			vertices[id] = new Vertice(id, coordenadaX, coordenadaY);
-			
+			vertices[id] = new Vertice(id, coordenadaX, coordenadaY);		
 		}
 
 		arestas = new MatrizAdjacencias(vertices.length);
@@ -72,9 +69,6 @@ public class app {
 		}
 		
 		arquivo.close();
-		//arestas.print();
-		
-	//	verticesConectados(1);
 		
 	}
 	
@@ -126,7 +120,6 @@ public class app {
 		}		
 	}
 	
-	// ok - testado
 	public static Stack<Integer> verticesConectados(int vertice)
 	{
 		Stack<Integer> conectados = new Stack<Integer>();
@@ -140,17 +133,11 @@ public class app {
 				{
 					if ( arestas.getAresta(c,l) != null )
 					{
-						/*System.out.print("Conectado: ");
-						System.out.print(c);
-						System.out.print(" ");
-						System.out.println(l);*/
 						conectados.push(l);
 					}
 				}
 				break;
 			}
-			/*while ( !conectados.isEmpty() )
-				System.out.println(conectados.pop());*/
 		}
 		return conectados;
 	}
